@@ -7,6 +7,8 @@ import plotly.graph_objs as go
 import re
 # import smtp_alert
 
+# change ip adress  with ip from device (ipconfig)
+ADDRESS = '192.168.2.6'
 
 # Set up the app
 app = dash.Dash(__name__)
@@ -144,7 +146,6 @@ def generate_table(selected_dropdown_value, max_rows=20):
    # return None
 
 
-ADDRESS = '192.168.2.6'
 if __name__ == '__main__':
     app.run_server(debug=True, port=8080, host=ADDRESS)
 
