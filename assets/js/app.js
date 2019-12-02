@@ -1,6 +1,6 @@
-const db = firebase.firestore();
+const db = firebase.firestore()
 const sensorRef = db.collection('sensoren');
-const rateRef = db.collection('hartSensor').get();
+const rateRef = db.collection('hartSensor');
 const overlay = document.querySelector('.overlay')
 const loginBtn = document.querySelector('#loginBtn')
 let temperatureChart
@@ -31,9 +31,9 @@ const initEventListener = (name) => {
 
 
 const watchSensors = (chart) => {
-    sensorRef.data('soundSensor').get(doc => {
+    sensorRef.doc('soundSensor').get(doc => {
         console.log(doc.data())
-        const { dB, rate } = doc.data()
+        const { dB } = doc.data()
         const humidityElement = document.querySelector(`#humidityValue`)
         const temperatureElement = document.querySelector(`#temperatureValue`)
         const outerRing = document.querySelector('#tempOuterRing')
@@ -46,7 +46,7 @@ const watchSensors = (chart) => {
             outerRing.style.backgroundColor = 'rgb(61, 122, 236)'
         }
         temperatureElement.innerHTML = dB
-        updateChart(chart, rate)
+        updateChart(chart, dB)
 
     })
 }
@@ -171,15 +171,15 @@ sensorRef.get().then(function(querySnapshot){
 
 const initChart = () => {
     return new Promise((resolve, reject) => {
-           
+            rateRef.get().then(function(querySnapshot){
                 const chartData = []
                 const labelPoints = []
-                rateRef.docs.map(doc => {
+                querySnapshot.forEach(doc => {
                     console.log(doc.data())
-                    chartDate = new Date(rate.timestamp.seconds * 1000)
+                    chartDate = new Date(doc.timestamp * 1000)
                     chartData.unshift({
                         x: chartDate,
-                        y: rate.value,
+                        y: doc.data().rate,
                     })
                     labelPoints.unshift(chartDate)
                 temperatureChart = createChart(labelPoints, chartData)
@@ -189,6 +189,8 @@ const initChart = () => {
                 reject(error)
                 console.log(error)
             })
+        })
+        
     })
 }
 
@@ -221,7 +223,6 @@ loginBtn.addEventListener('click', (e) => {
 const initApp = () => {
     // initialize controls
     // Initialize chart
-    watchSensors()
     initChart().then(chart => {
         // initialize sensors
         watchSensors(chart)
