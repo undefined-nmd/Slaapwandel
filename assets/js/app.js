@@ -221,7 +221,7 @@ loginBtn.addEventListener('click', (e) => {
 /**
  * Initialize app
  */
-const initApp = () => {
+/* const initApp = () => {
     // initialize controls
     // Initialize chart
     initChart().then(chart => {
@@ -230,7 +230,58 @@ const initApp = () => {
 
     })
     .catch(error => {
-        console.error(error)
+        console.error(error);
     })
     checkAlarm()
+} */
+
+
+//function to show all data in the dashboard
+const showData = () => {
+    //show date
+    n =  new Date();
+    y = n.getFullYear();
+    m = n.getMonth() + 1;
+    d = n.getDate();
+    document.getElementById("date").innerHTML = d + "/" + m + "/" + y;
+
+    //show time
+    startTime();
+
+    //show heart rate
+    showHeartRate();
 }
+
+const startTime = () => {
+    var today = new Date();
+    var h = today.getHours();
+    var m = today.getMinutes();
+    var s = today.getSeconds();
+    m = checkTime(m);
+    s = checkTime(s);
+    document.getElementById('time').innerHTML = h + ":" + m + ":" + s;
+    var t = setTimeout(startTime, 500);
+  }
+  function checkTime(i) {
+    if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+    return i;
+  }
+
+const showHeartRate = () => {
+    let heart = sensorRef.doc('hartSensor');
+    heart.get().then(function(doc) {
+        if (doc.exists) {
+            console.log("Document data:", doc.data());
+            console.log("heart rate is:", doc.data().rate);
+            document.getElementById("heartrate").innerHTML = doc.data().rate;
+        } else {
+            // doc.data() will be undefined in this case
+            console.log("No such document!");
+        }
+    }).catch(function(error) {
+        console.log("Error getting document:", error);
+    });
+
+}
+
+showData();
