@@ -290,17 +290,35 @@ const showHeartRate = () => {
 }
 
 const showAllHeartRate = () => {
+    // making an object to store the data for usage in the chart
+    let data = {
+        labels: [],
+        series: [],
+    }
+    let serie = [];
     //get all the heart rate data from the database and order it by timestamp
-    var heartData = db.collection("hartSensor").orderBy("timestamp", "desc").get().then(function(querySnapshot) {
+    var heartData = db.collection("hartSensor").orderBy("timestamp", "asc").get().then(function(querySnapshot) {
         //loop all the objects received from the database call
         querySnapshot.forEach(function(doc) {
             // doc.data() is never undefined for query doc snapshots
             console.log(doc.id, " => ", doc.data());
+            // pushing the data in the data object
+            serie.push(doc.data().rate);
+            data.labels.push(doc.data().timestamp.toDate());
         });
-    });;
-    
+        data.series.push(serie);
+        console.log(data);
+        makeChart(data);
+    });
+}
+
+const makeChart = (data) => {
+    console.log(data.series);
+    new Chartist.Line('.ct-chart', data);
+    console.log("test");
 }
 
 showData();
 
 showAllHeartRate();
+
