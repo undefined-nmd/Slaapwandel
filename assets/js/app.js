@@ -238,20 +238,21 @@ loginBtn.addEventListener('click', (e) => {
 
 //function to show all data in the dashboard
 const showData = () => {
-    //show date
+    //show current date
     n =  new Date();
     y = n.getFullYear();
     m = n.getMonth() + 1;
     d = n.getDate();
     document.getElementById("date").innerHTML = d + "/" + m + "/" + y;
 
-    //show time
+    //show current time
     startTime();
 
-    //show heart rate
+    //show last heart rate
     showHeartRate();
 }
 
+// function to get the current time
 const startTime = () => {
     var today = new Date();
     var h = today.getHours();
@@ -268,12 +269,17 @@ const startTime = () => {
   }
 
 const showHeartRate = () => {
+    // creating the path to the database
     let heart = sensorRef.doc('hartSensor');
+    // getting the heart rate from the document
     heart.get().then(function(doc) {
+        // if the document excist and is found
         if (doc.exists) {
             console.log("Document data:", doc.data());
             console.log("heart rate is:", doc.data().rate);
+            // place the value in the html element
             document.getElementById("heartrate").innerHTML = doc.data().rate;
+            //if the document doesn't excist, or isn't found
         } else {
             // doc.data() will be undefined in this case
             console.log("No such document!");
@@ -281,7 +287,20 @@ const showHeartRate = () => {
     }).catch(function(error) {
         console.log("Error getting document:", error);
     });
+}
 
+const showAllHeartRate = () => {
+    //get all the heart rate data from the database and order it by timestamp
+    var heartData = db.collection("hartSensor").orderBy("timestamp", "desc").get().then(function(querySnapshot) {
+        //loop all the objects received from the database call
+        querySnapshot.forEach(function(doc) {
+            // doc.data() is never undefined for query doc snapshots
+            console.log(doc.id, " => ", doc.data());
+        });
+    });;
+    
 }
 
 showData();
+
+showAllHeartRate();
