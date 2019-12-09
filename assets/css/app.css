@@ -1,0 +1,407 @@
+/* Font */
+@import url('https://fonts.googleapis.com/css?family=Nunito:300,400,700&display=swap');
+
+/* Variables */
+:root {
+   --font: 'Nunito', sans-serif; 
+}
+
+/* Base styles */
+html, body {
+    padding: 0;
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+    font-family: var(--font);
+    color: rgb(223, 229, 236);
+}
+
+.overlay {
+  position: absolute;
+  z-index: 999;
+  width: 100vw;
+  height: 100vh;
+  background: #fff;
+  background-image: linear-gradient(#182022, #78858b);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.overlay__form {
+    width: 400px;
+    height: 400px;
+    background: #E8E2D6;
+    box-shadow: 0px 0px 10px #00000005, 0px 15px 40px #00000020;
+    padding: 8px 16px 24px 16px;
+}
+
+.-hidden {
+  display: none;
+}
+
+.btn {
+  padding: 8px 14px;
+  border: none;
+  background: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.btn.-primary {
+  background: #8A8880;
+  color: #fefefe;
+  border-bottom:  2px solid #9c9c9c;
+
+}
+
+.form__group {
+  border: 1px solid rgb(223, 229, 236);
+  padding: 4px 8px;
+  margin: 8px 0;
+  background: #fefefe;
+  display: flex;
+  flex-flow: column nowrap;
+  border-radius: 4px;
+}
+
+.form__group label {
+  font-size: 12px;
+  color: rgb(127, 147, 190);
+  margin-bottom: 8px;
+}
+
+.form__group input {
+  border: none;
+  background: none;
+  font-family: var(--font);
+}
+
+.container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    background: rgb(223, 229, 236);
+    background-image: linear-gradient(#182022, #454e53);
+}
+
+.navContainer {
+    flex: 0 0 20%;
+    /*background: rgba(255, 255, 255, 0.102);*/
+    /*background-image: linear-gradient(#182022, #525e64);*/
+    box-sizing: border-box;
+}
+
+.nav {
+    display: flex;
+    flex-direction: row; 
+    justify-content: center;
+    align-items: center; 
+    height: 100%;
+}
+
+.nav ul li {
+    list-style-type: none;
+    display: grid;
+    text-align: center;
+    font-size: 25px;
+    letter-spacing: 1.5px;
+    font-variant: small-caps;
+    margin: 25px 0;
+}
+
+/* needs to be deleted/just ex for now */
+.nav ul li:first-child {
+    color: rgb(65, 152, 173);
+}
+
+.nav i {
+    line-height: 35px;
+
+}
+
+.informationContainer {
+    flex: 0 0 calc(80% - 3%);
+    margin: 1.5%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background-image: linear-gradient(#47525728, #232e31);
+    border-radius: 3px;
+    box-sizing: border-box;
+}
+
+.informationHeader {
+    padding: 25px 0;
+    border-bottom: 0.1px solid rgba(223, 229, 236, 0.246);
+    display: flex;
+    padding: 1.5%;
+}
+
+.informationHeader button {
+    padding: 13px 50px;
+    background-color: none;
+    background: none;
+    border-radius: 3px;
+    color: rgb(223, 229, 236);
+    border: 0.1px solid rgba(223, 229, 236, 0.246);
+}
+
+.informationHeader button:hover {
+    border: 0.1px solid rgb(65, 152, 173);
+}
+
+.informationHeader button:first-child {
+    border: 0.1px solid rgb(65, 152, 173);
+}
+
+.informationHeader button:first-child:hover {
+    border: 0.1px solid rgba(223, 229, 236, 0.246);
+}
+
+.usersBtn {
+    width: 75%;
+}
+
+.usersBtn button {
+    margin-right: 20px;
+}
+
+.usersBtn i {
+    margin: 0 5px;
+}
+
+.crudBtn {
+    width: 25%;
+    text-align: right;
+}
+
+.crudBtn button {
+    border: none!important;
+    padding: 10px;
+    text-align: right;
+}
+
+.crudBtn span {
+    margin: 0 5px;
+    vertical-align: middle;
+}
+
+.crudBtn i {
+    font-size: 25px;
+    vertical-align: middle;
+}
+
+.info__header {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.info__title {
+    line-height: 1;
+    font-size: 32px;
+    margin: 0;
+}
+
+.humidity {
+    margin: 0;
+}
+
+.text-muted {
+    color: rgb(169, 182, 211);
+}
+
+.switchContainer {
+    flex: 0 0 20%;
+    box-sizing: border-box;
+    padding: 64px 16px 0 48px;
+}
+
+.switchContainer__title {
+    color: rgb(127, 147, 190);
+    text-transform: uppercase;
+}
+
+.cameraContainer {
+    background: url('../images/room.png') no-repeat;
+    margin: 1.5%;
+    overflow: hidden;
+    border-radius: 3px;
+    max-height:  77.5%;
+    max-width:  74%;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+}
+
+.cameraOverlayContainer {
+    z-index: 10;
+    position: absolute;
+    bottom: 0;
+}
+
+.cameraOverlayContainer.right {
+    right: 0;
+    margin: 0 5% 5%;
+}
+
+.cameraOverlayContainer.right i {
+    font-size: 30px;
+    margin: 20px 0 20px 5px;
+    color: rgb(169, 182, 211);
+}
+
+.cameraOverlayContainer.left {
+    font-size: 50px;
+    display: flex;
+    left: 21.5%;
+    margin: 5% 0;
+}
+
+.cameraOverlayContainer.left i {
+    margin: 0 75px 0 100px;
+}
+
+/* can be removed - just an ex of ON*/
+.cameraOverlayContainer.left h3:first-child {
+    color: rgb(65, 152, 173);
+}
+
+
+.cameraOverlayContainer h3 {
+    text-align: right;
+    color: rgba(223, 229, 236, 0.20);
+    margin-top: 10px;
+}
+
+.cameraOverlayContainer h3 i:hover {
+    color: rgb(65, 152, 173);
+    transition: 0.5s
+    
+}
+
+/* can be removed - just an ex of OFF*/
+.cameraOverlayContainer.left h3:first-child:hover {
+    color: rgba(223, 229, 236, 0.20);
+    transition: 0.5s;
+}
+
+
+.temperature {
+    width: 150px;
+    height: 150px;
+    background: rgba(169, 182, 211, 0.05);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    box-shadow: 0 5px 15px #00000030;
+    position: relative;
+}
+
+.temperature i {
+    font-size: 50px;
+    margin: 0 2px;
+}
+
+.temperature__display {
+    font-size: 50px;
+}
+
+.temperature__unit {
+    position: absolute;
+    bottom: 32px;
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.temperature.-outer {
+    width: 200px;
+    height: 200px;
+    background: rgba(223, 229, 236, 0.05);
+    /* border-width: 32px;
+    border-style: solid;
+    border-color: rgb(223, 229, 236); */
+    box-shadow: inset 0 0 15px #00000020;
+}
+
+.tempChart {
+    width: 80%;
+    height: 35%;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+
+.switch__item {
+    display: flex;
+    justify-content: flex-start;
+    margin: 24px 0;
+}
+
+.switch__button {
+    height: 48px;
+    width: 48px;
+    border-radius: 10px;
+    margin: 0 24px 0 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    cursor: pointer;
+    transition: all 100ms ease-in-out;
+}
+
+#lightsSwitch {
+    background-color: rgb(190, 178, 3);
+}
+
+.switch__button.-on {
+    color: #1b1d1e;
+    transition: all 100ms ease-in-out;
+}
+
+#lightsSwitch.-on {
+    background-color: rgb(255, 230, 0);
+    box-shadow: 0 0 15px rgb(255, 230, 0);
+}
+
+#powerSwitch {
+    background-color: rgb(17, 65, 119);
+}
+
+#powerSwitch.-on {
+    background-color: rgb(95, 164, 255);
+    box-shadow: 0 0 15px rgb(95, 164, 255);
+}
+
+#frontDoorSwitch, #backDoorSwitch {
+    background-color: rgb(145, 0, 0);
+}
+
+#frontDoorSwitch.-on, #backDoorSwitch.-on {
+    background-color: rgb(81, 226, 81);
+    box-shadow: 0 0 15px rgb(81, 226, 81);
+}
+
+#alarmSwitch {
+    background-color: rgb(145, 0, 0);
+}
+
+#alarmSwitch.-on {
+    background-color: rgb(224, 39, 39);
+    box-shadow: 0 0 15px rgb(224, 39, 39);
+}
+
+.switch__details {
+    height: 48px;
+}
+
+.switch__details > * {
+    margin: 0;
+}
+
+.switch__title {
+    font-weight: 700;
+    font-size: 20px;
+}
