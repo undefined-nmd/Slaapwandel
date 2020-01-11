@@ -3,8 +3,19 @@ import path from 'path';
 import logger from 'morgan';
 import bodyParser from 'body-parser';
 import routes from './routes';
+import ngrok from 'ngrok';
 
 const app = express();
+
+(async function() {
+  const url = await ngrok.connect(8080);
+  const apiUrl = ngrok.getUrl();
+  const api = ngrok.getApi();
+  let data = await api.get('api/tunnels');
+  data = JSON.parse(data);
+  console.log("saved " + data.tunnels[0].public_url);
+
+})();
 app.disable('x-powered-by');
 
 // View engine setup
