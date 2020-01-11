@@ -19,7 +19,6 @@ html, body {
 }
 
 .overlay {
-<<<<<<< HEAD
   position: absolute;
   z-index: 999;
   width: 100vw;
@@ -78,62 +77,6 @@ html, body {
   border: none;
   background: none;
   font-family: var(--font);
-=======
-    position: absolute;
-    z-index: 999;
-    width: 100vw;
-    height: 100vh;
-    background: #fff;
-    background-image: linear-gradient(#182022, #78858b);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.overlay__form {
-    padding: 20px;
-    box-shadow: 0px 0px 10px #00000005, 0px 15px 40px #00000020;
-}
-
-.-hidden {
-    display: none;
-}
-
-.btn {
-    padding: 8px 14px;
-    border: none;
-    background: none;
-    border-radius: 10px;
-    cursor: pointer;
-}
-
-.btn.-primary {
-    background: #8A8880;
-    color: #fefefe;
-    border-bottom: 2px solid #9c9c9c;
-}
-
-.form__group {
-    border: 1px solid rgb(223, 229, 236);
-    padding: 4px 8px;
-    margin: 8px 0;
-    background: #fefefe;
-    display: flex;
-    flex-flow: column nowrap;
-    border-radius: 4px;
-}
-
-.form__group label {
-    font-size: 12px;
-    color: rgb(127, 147, 190);
-    margin-bottom: 8px;
-}
-
-.form__group input {
-    border: none;
-    background: none;
-    font-family: var(--font);
->>>>>>> 11580ce9ef4b3c130ed65014b88221b3b2c297f4
 }
 
 .container {
@@ -153,26 +96,12 @@ html, body {
 
 .nav {
     display: flex;
-<<<<<<< HEAD
     flex-direction: row; 
     justify-content: center;
     align-items: center; 
     height: 100%;
 }
 
-=======
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-}
-
-ul {
-    padding: 0;
-    list-style-type: none;
-}
-
->>>>>>> 11580ce9ef4b3c130ed65014b88221b3b2c297f4
 .nav ul li {
     list-style-type: none;
     display: grid;
@@ -181,38 +110,15 @@ ul {
     letter-spacing: 1.5px;
     font-variant: small-caps;
     margin: 25px 0;
-<<<<<<< HEAD
 }
 
 /* needs to be deleted/just ex for now */
 .nav ul li:first-child {
     color: rgb(65, 152, 173);
-=======
-    cursor: pointer;
-}
-
-.nav ul li:hover {
-    color: rgb(65, 152, 173);
-}
-
-.nav ul li span {
-    display: none;
-    justify-content: center;
-}
-
-/* needs to be deleted/just ex for now */
-
-.nav ul li:first-child {
-    color: #4198ad;
->>>>>>> 11580ce9ef4b3c130ed65014b88221b3b2c297f4
 }
 
 .nav i {
     line-height: 35px;
-<<<<<<< HEAD
-
-=======
->>>>>>> 11580ce9ef4b3c130ed65014b88221b3b2c297f4
 }
 
 .informationContainer {
@@ -228,19 +134,11 @@ ul {
     padding: 25px 0;
     border-bottom: 0.1px solid rgba(223, 229, 236, 0.246);
     display: flex;
-<<<<<<< HEAD
     padding: 1.5%;
 }
 
 .informationHeader button {
     padding: 13px 50px;
-=======
-    padding: 2%;
-}
-
-.informationHeader button {
-    padding: 13px 10px;
->>>>>>> 11580ce9ef4b3c130ed65014b88221b3b2c297f4
     background-color: none;
     background: none;
     border-radius: 3px;
@@ -262,19 +160,10 @@ ul {
 
 .usersBtn {
     width: 75%;
-<<<<<<< HEAD
 }
 
 .usersBtn button {
     margin-right: 20px;
-=======
-    display: flex;
-    /*justify-content: center;*/
-}
-
-.usersBtn button {
-    margin-right: 10px;
->>>>>>> 11580ce9ef4b3c130ed65014b88221b3b2c297f4
 }
 
 .usersBtn i {
@@ -283,12 +172,7 @@ ul {
 
 .crudBtn {
     width: 25%;
-<<<<<<< HEAD
     text-align: right;
-=======
-    display: flex;
-    justify-content: flex-end;
->>>>>>> 11580ce9ef4b3c130ed65014b88221b3b2c297f4
 }
 
 .crudBtn button {
@@ -339,7 +223,6 @@ ul {
     text-transform: uppercase;
 }
 
-<<<<<<< HEAD
 .cameraContainer {
     background: url('../images/room.png') no-repeat;
     margin: 1.5%;
@@ -347,18 +230,6 @@ ul {
     border-radius: 3px;
     max-height:  77.5%;
     max-width:  74%;
-=======
-.cameraSection {
-    padding: 2%;
-}
-
-.cameraContainer {
-    background: url('../images/room.png') repeat;
-    overflow: hidden;
-    border-radius: 3px;
-    max-height: 77.5%;
-    max-width: 74%;
->>>>>>> 11580ce9ef4b3c130ed65014b88221b3b2c297f4
     height: 100%;
     width: 100%;
     position: fixed;
@@ -367,11 +238,7 @@ ul {
 .cameraOverlayContainer {
     z-index: 10;
     position: absolute;
-<<<<<<< HEAD
     bottom: 0;
-=======
-    /*bottom: 0;*/
->>>>>>> 11580ce9ef4b3c130ed65014b88221b3b2c297f4
 }
 
 .cameraOverlayContainer.right {
@@ -380,17 +247,12 @@ ul {
 }
 
 .cameraOverlayContainer.right i {
-<<<<<<< HEAD
     font-size: 30px;
-=======
-    font-size: 25px;
->>>>>>> 11580ce9ef4b3c130ed65014b88221b3b2c297f4
     margin: 20px 0 20px 5px;
     color: rgb(169, 182, 211);
 }
 
 .cameraOverlayContainer.left {
-<<<<<<< HEAD
     font-size: 50px;
     display: flex;
     left: 21.5%;
@@ -407,27 +269,6 @@ ul {
 }
 
 
-=======
-    font-size: 25px;
-    left: 21.5%;
-    margin: 0 0 5% 5%;
-}
-
-.cameraOverlayContainer.left h3 {
-    text-align: center;
-}
-
-.cameraOverlayContainer.left i {
-    margin: 20px 5px 20px 0;
-}
-
-/* can be removed - just an ex of ON*/
-
-.cameraOverlayContainer.left h3:first-child {
-    color: #4198ad;
-}
-
->>>>>>> 11580ce9ef4b3c130ed65014b88221b3b2c297f4
 .cameraOverlayContainer h3 {
     text-align: right;
     color: rgba(223, 229, 236, 0.20);
@@ -437,32 +278,19 @@ ul {
 .cameraOverlayContainer h3 i:hover {
     color: rgb(65, 152, 173);
     transition: 0.5s
-<<<<<<< HEAD
     
 }
 
 /* can be removed - just an ex of OFF*/
-=======
-}
-
-/* can be removed - just an ex of OFF*/
-
->>>>>>> 11580ce9ef4b3c130ed65014b88221b3b2c297f4
 .cameraOverlayContainer.left h3:first-child:hover {
     color: rgba(223, 229, 236, 0.20);
     transition: 0.5s;
 }
 
-<<<<<<< HEAD
 
 .temperature {
     width: 150px;
     height: 150px;
-=======
-.temperature {
-    width: 85px;
-    height: 85px;
->>>>>>> 11580ce9ef4b3c130ed65014b88221b3b2c297f4
     background: rgba(169, 182, 211, 0.05);
     display: flex;
     justify-content: center;
@@ -478,11 +306,7 @@ ul {
 }
 
 .temperature__display {
-<<<<<<< HEAD
     font-size: 50px;
-=======
-    font-size: 25px;
->>>>>>> 11580ce9ef4b3c130ed65014b88221b3b2c297f4
 }
 
 .temperature__unit {
@@ -493,13 +317,8 @@ ul {
 }
 
 .temperature.-outer {
-<<<<<<< HEAD
     width: 200px;
     height: 200px;
-=======
-    width: 125px;
-    height: 125px;
->>>>>>> 11580ce9ef4b3c130ed65014b88221b3b2c297f4
     background: rgba(223, 229, 236, 0.05);
     /* border-width: 32px;
     border-style: solid;
@@ -507,19 +326,12 @@ ul {
     box-shadow: inset 0 0 15px #00000020;
 }
 
-<<<<<<< HEAD
 .tempChart {
     width: 80%;
     height: 35%;
     position: absolute;
     left: 0;
     bottom: 0;
-=======
-.tempContainer {
-    position: fixed;
-    right: 5%;
-    bottom: 5%;
->>>>>>> 11580ce9ef4b3c130ed65014b88221b3b2c297f4
 }
 
 .switch__item {
@@ -586,267 +398,11 @@ ul {
     height: 48px;
 }
 
-<<<<<<< HEAD
 .switch__details > * {
-=======
-.switch__details>* {
->>>>>>> 11580ce9ef4b3c130ed65014b88221b3b2c297f4
     margin: 0;
 }
 
 .switch__title {
     font-weight: 700;
     font-size: 20px;
-<<<<<<< HEAD
-=======
-}
-
-#chartOverlay, #cameraOverlay {
-    display: none;
-}
-
-/*
-* Login form
-*/
-
-.login-form-group {
-    position: relative;
-    display: block;
-    margin-bottom: 48px;
-}
-
-.login-form-group span {
-    font-size: 15px;
-    color: #ffff;
-    position: absolute;
-    top: 11px;
-    transition: all .2s ease;
-    transform-origin: 0 0;
-    cursor: text;
-}
-
-.login-form-group.border {
-    height: 2px;
-    display: block;
-    position: absolute;
-    width: 100%;
-    left: 0;
-    top: 41px;
-    transform: scaleX(0);
-    transition: all .15s ease;
-    background: #fff;
-}
-
-.login-form-control {
-    border: none;
-    border-bottom-color: currentcolor;
-    border-bottom-style: none;
-    border-bottom-width: medium;
-    border-bottom: 2px solid #ffff;
-    display: block;
-    width: 100%;
-    height: 43px;
-    font-size: 15px;
-    background: none;
-    font-weight: 500;
-}
-
-.login-form-control:focus, .login-form-control:valid {
-    border-bottom: 2px solid #fff;
-}
-
-.login-form-control:focus+span, .login-form-control:valid+span {
-    transform: translateY(-22px) scale(0.8);
-}
-
-.login-form-control:focus+span+.border, .login-form-control:valid+span+.border {
-    transform: scaleX(1);
-}
-
-textarea.login-form-control {
-    padding-top: 10px;
-    padding-bottom: 10px;
-}
-
-.loginButton {
-    border: none;
-    width: 162px;
-    height: 51px;
-    border: 3px solid #ffff;
-    margin: auto;
-    margin-top: 60px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 20px;
-    padding: 0;
-    background: none;
-    color: #ffff;
-    text-transform: uppercase;
-    font-family: "Montserrat-SemiBold";
-    -webkit-transform: perspective(1px) translateZ(0);
-    transform: perspective(1px) translateZ(0);
-    position: relative;
-    -webkit-transition-property: color;
-    transition-property: color;
-    -webkit-transition-duration: 0.3s;
-    transition-duration: 0.3s;
-}
-
-.loginButton i {
-    margin-left: 10px;
-    -webkit-transform: translateZ(0);
-    transform: translateZ(0);
-    -webkit-transition-duration: 0.1s;
-    transition-duration: 0.1s;
-    -webkit-transition-property: transform;
-    transition-property: transform;
-    -webkit-transition-timing-function: ease-out;
-    transition-timing-function: ease-out;
-}
-
-.loginButton:before {
-    content: "";
-    position: absolute;
-    z-index: -1;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgb(65, 152, 173);
-    -webkit-transform: scaleX(0);
-    transform: scaleX(0);
-    -webkit-transform-origin: 0 50%;
-    transform-origin: 0 50%;
-    -webkit-transition-property: transform;
-    transition-property: transform;
-    -webkit-transition-duration: 0.3s;
-    transition-duration: 0.3s;
-    -webkit-transition-timing-function: ease-out;
-    transition-timing-function: ease-out;
-}
-
-.loginButton:hover {
-    border-color: transparent;
-}
-
-.loginButton:hover:before {
-    -webkit-transform: scaleX(1);
-    transform: scaleX(1);
-}
-
-.loginButton:hover i {
-    -webkit-transform: translateX(4px);
-    transform: translateX(4px);
-}
-
-.loginLogo {
-    display: block;
-    width: 100px;
-    height: 100px;
-    margin: 20px auto;
-}
-
-.loginTitle {
-    text-align: center;
-    margin-bottom: 10px;
-    font-size: 30px;
-    font-weight: 700;
-    letter-spacing: 8px;
-}
-
-.loginSubtitle {
-    text-align: center;
-    font-weight: 500;
-    font-size: 15px;
-    margin-bottom: 30px;
-}
-
-@media screen and (min-width: 768px) {
-    .usersBtn button {
-        margin-right: 28px;
-        font-size: 20px;
-        padding: 15px 25px;
-    }
-    .crudBtn button i {
-        font-size: 35px;
-    }
-    .cameraOverlayContainer.right, .cameraOverlayContainer.right i {
-        font-size: 35px;
-        margin-left: 15px;
-    }
-    .cameraOverlayContainer.left {
-        display: flex;
-    }
-    .cameraOverlayContainer.left, .cameraOverlayContainer.left i {
-        font-size: 35px;
-        margin-left: 30px;
-    }
-    .cameraOverlayContainer h3 {
-        font-size: 35px;
-    }
-    .temperature {
-        width: 120px;
-        height: 120px;
-    }
-    .temperature__display {
-        font-size: 35px;
-    }
-    .temperature.-outer {
-        width: 175px;
-        height: 175px;
-    }
-    .loginTitle {
-        font-size: 50px;
-    }
-    .loginSubtitle {
-        font-size: 17px;
-        margin-bottom: 40px;
-    }
-}
-
-@media screen and (min-width: 1024px) {
-    .nav ul li span {
-        display: flex;
-    }
-    .informationHeader button {
-        padding: 20px 35px;
-    }
-    .usersBtn button {
-        margin-right: 33px;
-        font-size: 25px;
-    }
-    .crudBtn button {
-        padding: 0px;
-        font-size: 35px;
-    }
-    .crudBtn button i {
-        font-size: 45px;
-    }
-    .cameraOverlayContainer.right, .cameraOverlayContainer.right i {
-        font-size: 45px;
-    }
-    .cameraOverlayContainer.left, .cameraOverlayContainer.left i {
-        font-size: 45px;
-    }
-    .temperature {
-        width: 140px;
-        height: 140px;
-    }
-    .temperature__display {
-        font-size: 45px;
-    }
-    .temperature.-outer {
-        width: 200px;
-        height: 200px;
-    }
-    .loginTitle {
-        font-size: 70px;
-    }
-    .loginSubtitle {
-        font-size: 19px;
-        margin-bottom: 50px;
-    }
->>>>>>> 11580ce9ef4b3c130ed65014b88221b3b2c297f4
 }
