@@ -77,7 +77,7 @@ const db = firebase.firestore()
 
      })
  }
- const alarmsound = new Audio('./assets/sound/swamp.mp3')
+ const alarmsound = new Audio('./assets/sound/alarm.mp3')
 
  const loopLights = () => {
 
