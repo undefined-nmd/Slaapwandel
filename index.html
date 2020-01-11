@@ -31,6 +31,7 @@
                  </label>
 
                  <button id="loginBtn" class="loginButton">Log in</button>
+                 <button id="signupBtn" class="signupBtn"> <a href="/signup.html">Make account</a></button>
              </form>
          </div>
          <!-- <div class="overlay__form">
@@ -51,8 +52,6 @@
              </form>
          </div>-->
      </section>
-
-
      <main class="container">
          <section class="navContainer">
              <div class="nav">
@@ -68,11 +67,10 @@
          <section id="mainOverlay" class="informationContainer">
              <header class="informationHeader">
                  <div class="usersBtn">
-                     <button><i class="fas fa-user-alt"></i> Milo's</button>
-                     <button><i class="fas fa-user-alt"></i> Jerry's</button>
+
                  </div>
                  <div class="crudBtn">
-                     <button><i class="fas fa-plus-circle"></i></button>
+                     <button id="newDashboardBtn"><i class="fas fa-plus-circle"></i></button>
                  </div>
              </header>
              <section class="cameraSection">
@@ -115,7 +113,34 @@
          <section id="chartOverlay" class="informationContainer">
              <div class="ct-chart ct-perfect-fourth"></div>
          </section>
+        <!-- The Modal -->
+        <div id="myModal" class="modal">
 
+            <!-- Modal content -->
+            <div class="modal-content">
+            <span class="close">&times;</span>
+            <p>Succesfully Created!</p>
+            </div>
+        
+        </div>
+         <!--NEW DASHBOARD-->
+         <section id="newDashboardOverlay" class="informationContainer">
+            <h1>Create new dashboard</h1>
+                <form class="newDashboardForm" method="post">
+                    <label class="login-form-group" for="name">Naam
+                        <input class="login-form-control" type="text" name="name" id="name" autofocus>
+                    </label>
+                    <br>
+                    <label>Geslacht:</label>
+                    <br>
+                    <input type="radio" name="gender" id="gender" value="male" checked> Male<br>
+                    <input type="radio" name="gender" id="gender" value="female"> Female<br>
+                    <input type="radio" name="gender" id="gender" value="other"> Other
+                    <br>
+                    <button id="createBtn" class="createBtn">Create</button>
+                </form>
+        </section>
+        
      </main>
 
 

@@ -6,6 +6,22 @@ const db = firebase.firestore()
 
  const chartOverlay = document.querySelector('#chartOverlay');
  const chartBtn = document.querySelector('#chartBtn');
+
+ // new dashboard
+ const newDashboardOverlay = document.querySelector('#newDashboardOverlay');
+ const newDashboardBtn = document.querySelector('#newDashboardBtn');
+ const createBtn = document.querySelector('#createBtn');
+
+ const usersBtn = document.querySelector('.usersBtn')
+
+ // modal
+ const modal = document.getElementById("myModal");
+ let span = document.getElementsByClassName("close")[0];
+
+ // sign up
+ const signupBtn = document.querySelector('#signupBtn');
+ const makeAccountBtn = document.querySelector('#makeAccountBtn')
+
  const mainOverlay = document.querySelector('#mainOverlay');
  const mainBtn = document.querySelector('#mainBtn');
  const cameraOverlay = document.querySelector('#cameraOverlay');
@@ -236,6 +252,17 @@ const db = firebase.firestore()
          .catch(err => console.error(err))
  })
 
+ signupBtn.addEventListener('click', (e) => {
+    e.preventDefault()
+    
+    console.log('signup')
+})
+
+const getSignup = () => {
+//
+
+}
+
  /*
  * NAV
  */
@@ -319,6 +346,9 @@ const db = firebase.firestore()
 
      //show last heart rate
      showHeartRate();
+
+     //get users
+     getPeople();
  }
 
  // function to get the current time
@@ -386,6 +416,81 @@ const db = firebase.firestore()
      new Chartist.Line('.ct-chart', data);
      console.log("test");
  }
+
+
+
+ /*
+ ** USER DASHBOARD
+ **
+ */
+
+const getPeople = () => {
+
+    //const userId = firebase.auth().currentUser.uid
+    // people names and make buttons for dashboard
+    db.collection('Users').doc('Q5DVxLu7AYdRQr98OhgN9USACM52').collection('People').get()
+    .then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+            // doc.data() is never undefined for query doc snapshots
+            //<button><i class="fas fa-user-alt"></i> Milo's</button>
+            var button = document.createElement("button");
+            var name = document.createTextNode(doc.data().name); 
+            // add the text node to the newly created div
+            button.appendChild(name);  
+            console.log(doc.id, " => ", doc.data());
+            usersBtn.appendChild(button);
+        });
+    });
+}
+
+const getDashboard = () => {
+    // 
+}
+
+
+newDashboardBtn.addEventListener('click', (e) => {
+    e.preventDefault()
+
+    console.log('plusbtn');
+    chartOverlay.style.display = "none";
+    cameraOverlay.style.display = "none";
+    mainOverlay.style.display = "none";
+    newDashboardOverlay.style.display ="block"
+})
+
+
+createBtn.addEventListener('click', (e) => {
+    e.preventDefault()
+    const name = document.querySelector('#name').value
+    const gender = document.querySelector('#gender').value
+
+    const userId = firebase.auth().currentUser.uid
+    
+    db.collection('Users').doc(userId).collection('People').add({
+        name: name,
+        gender: gender,
+    })
+    .then(function(docRef) {
+        console.log("Document written with ID: ", docRef.id);
+        modal.style.display = "block";
+
+    })
+    .catch(function(error) {
+        console.error("Error adding document: ", error);
+    });
+    
+})
+
+span.onclick = function() {
+    modal.style.display = "none";
+  }
+  
+  window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }}
+
+
 
  showData();
 
