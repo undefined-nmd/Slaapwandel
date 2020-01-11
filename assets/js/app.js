@@ -2,6 +2,9 @@ const db = firebase.firestore()
 const sensorRef = db.collection('sensoren');
 const rateRef = db.collection('hartSensor');
 const overlay = document.querySelector('.overlay')
+<<<<<<< HEAD
+const loginBtn = document.querySelector('#loginBtn')
+=======
 const loginBtn = document.querySelector('#loginBtn');
 
 const chartOverlay = document.querySelector('#chartOverlay');
@@ -14,6 +17,7 @@ const cameraBtn = document.querySelector('#cameraBtn');
 const signoutBtn = document.querySelector('#signoutBtn');
 
 
+>>>>>>> 11580ce9ef4b3c130ed65014b88221b3b2c297f4
 let temperatureChart
 
 
@@ -21,6 +25,15 @@ const pushState = (name) => {
     // Get the current state
     const elementButton = document.querySelector(`#${name}Switch`)
     let currentState = false
+<<<<<<< HEAD
+    if(elementButton.classList.contains('-on')) { currentState = true }
+    sensorRef.doc(name).update({
+        isOn: !currentState
+    })
+    .catch(error => {
+        console.error(error)
+    })
+=======
     if (elementButton.classList.contains('-on')) { currentState = true }
     sensorRef.doc(name).update({
         isOn: !currentState
@@ -28,6 +41,7 @@ const pushState = (name) => {
         .catch(error => {
             console.error(error)
         })
+>>>>>>> 11580ce9ef4b3c130ed65014b88221b3b2c297f4
 }
 
 
@@ -49,9 +63,15 @@ const watchSensors = (chart) => {
         const temperatureElement = document.querySelector(`#temperatureValue`)
         const outerRing = document.querySelector('#tempOuterRing')
         humidityElement.innerHTML = dB
+<<<<<<< HEAD
+        if(tempValue > 40) {
+            outerRing.style.backgroundColor = 'rgb(236, 117, 61)'
+        } else if(tempValue > 30) {
+=======
         if (tempValue > 40) {
             outerRing.style.backgroundColor = 'rgb(236, 117, 61)'
         } else if (tempValue > 30) {
+>>>>>>> 11580ce9ef4b3c130ed65014b88221b3b2c297f4
             outerRing.style.backgroundColor = 'rgb(61, 236, 90)'
         } else {
             outerRing.style.backgroundColor = 'rgb(61, 122, 236)'
@@ -66,12 +86,21 @@ const alarmsound = new Audio('./assets/sound/swamp.mp3')
 const loopLights = () => {
 
     sensorRef.doc('lights').get()
+<<<<<<< HEAD
+    .then(lights => {
+        const { isOn } = lights.data()
+        sensorRef.doc('lights').set({
+            isOn: !isOn
+        })
+    })
+=======
         .then(lights => {
             const { isOn } = lights.data()
             sensorRef.doc('lights').set({
                 isOn: !isOn
             })
         })
+>>>>>>> 11580ce9ef4b3c130ed65014b88221b3b2c297f4
 }
 
 const activateAlarm = () => {
@@ -89,7 +118,11 @@ const resetAlarm = () => {
     sensorRef.doc("vibratieSensor").set({
         isOn: false
     })
+<<<<<<< HEAD
+ 
+=======
 
+>>>>>>> 11580ce9ef4b3c130ed65014b88221b3b2c297f4
 }
 
 const checkAlarm = () => {
@@ -120,7 +153,11 @@ const createChart = (labels, data) => {
         type: 'line',
         data: {
             labels: labels,
+<<<<<<< HEAD
+            datasets:[{
+=======
             datasets: [{
+>>>>>>> 11580ce9ef4b3c130ed65014b88221b3b2c297f4
                 label: 'Temperature',
                 borderColor: 'rgba(169, 182, 211, 1)',
                 backgroundColor: 'rgb(183, 198, 216)',
@@ -173,6 +210,38 @@ const createChart = (labels, data) => {
     return myChart
 }
 
+<<<<<<< HEAD
+sensorRef.get().then(function(querySnapshot){
+    querySnapshot.forEach(doc => {
+       console.log(doc.data());
+    });
+  }).catch(err => {
+     console.log('Error getting documents', err);
+  });
+
+const initChart = () => {
+    return new Promise((resolve, reject) => {
+            rateRef.get().then(function(querySnapshot){
+                const chartData = []
+                const labelPoints = []
+                querySnapshot.forEach(doc => {
+                    console.log(doc.data())
+                    chartDate = new Date(doc.timestamp * 1000)
+                    chartData.unshift({
+                        x: chartDate,
+                        y: doc.data().rate,
+                    })
+                    labelPoints.unshift(chartDate)
+                temperatureChart = createChart(labelPoints, chartData)
+                resolve(temperatureChart)
+            })
+            .catch(error => {
+                reject(error)
+                console.log(error)
+            })
+        })
+        
+=======
 sensorRef.get().then(function (querySnapshot) {
     querySnapshot.forEach(doc => {
         console.log(doc.data());
@@ -203,10 +272,35 @@ const initChart = () => {
                 })
         })
 
+>>>>>>> 11580ce9ef4b3c130ed65014b88221b3b2c297f4
     })
 }
 
 firebase.auth().onAuthStateChanged(user => {
+<<<<<<< HEAD
+  if(user) {
+    if(!overlay.classList.contains('-hidden')) {
+      overlay.classList.add('-hidden')
+    }
+    initApp()
+  } else {
+    overlay.classList.remove('-hidden')
+  }
+})
+
+loginBtn.addEventListener('click', (e) => {
+  e.preventDefault()
+  const email = document.querySelector('#email').value
+  const pass = document.querySelector('#password').value
+
+  firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
+  .then(() => {
+    firebase.auth().signInWithEmailAndPassword(email, pass)
+  })
+  .catch(err => console.error(err))
+})
+
+=======
     if (user) {
         if (!overlay.classList.contains('-hidden')) {
             overlay.classList.add('-hidden')
@@ -287,6 +381,7 @@ function navButton(overlayShow, overlayOne, overlayTwo) {
 cameraBtn.addEventListener("click", navButton(cameraOverlay, chartOverlay, mainOverlay));*/
 
 
+>>>>>>> 11580ce9ef4b3c130ed65014b88221b3b2c297f4
 /**
  * Initialize app
  */
@@ -308,7 +403,11 @@ cameraBtn.addEventListener("click", navButton(cameraOverlay, chartOverlay, mainO
 //function to show all data in the dashboard
 const showData = () => {
     //show current date
+<<<<<<< HEAD
+    n =  new Date();
+=======
     n = new Date();
+>>>>>>> 11580ce9ef4b3c130ed65014b88221b3b2c297f4
     y = n.getFullYear();
     m = n.getMonth() + 1;
     d = n.getDate();
@@ -331,17 +430,29 @@ const startTime = () => {
     s = checkTime(s);
     document.getElementById('time').innerHTML = h + ":" + m + ":" + s;
     var t = setTimeout(startTime, 500);
+<<<<<<< HEAD
+  }
+  function checkTime(i) {
+    if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+    return i;
+  }
+=======
 }
 function checkTime(i) {
     if (i < 10) { i = "0" + i };  // add zero in front of numbers < 10
     return i;
 }
+>>>>>>> 11580ce9ef4b3c130ed65014b88221b3b2c297f4
 
 const showHeartRate = () => {
     // creating the path to the database
     let heart = sensorRef.doc('hartSensor');
     // getting the heart rate from the document
+<<<<<<< HEAD
+    heart.get().then(function(doc) {
+=======
     heart.get().then(function (doc) {
+>>>>>>> 11580ce9ef4b3c130ed65014b88221b3b2c297f4
         // if the document excist and is found
         if (doc.exists) {
             console.log("Document data:", doc.data());
@@ -353,7 +464,11 @@ const showHeartRate = () => {
             // doc.data() will be undefined in this case
             console.log("No such document!");
         }
+<<<<<<< HEAD
+    }).catch(function(error) {
+=======
     }).catch(function (error) {
+>>>>>>> 11580ce9ef4b3c130ed65014b88221b3b2c297f4
         console.log("Error getting document:", error);
     });
 }
@@ -366,9 +481,15 @@ const showAllHeartRate = () => {
     }
     let serie = [];
     //get all the heart rate data from the database and order it by timestamp
+<<<<<<< HEAD
+    var heartData = db.collection("hartSensor").orderBy("timestamp", "asc").get().then(function(querySnapshot) {
+        //loop all the objects received from the database call
+        querySnapshot.forEach(function(doc) {
+=======
     var heartData = db.collection("hartSensor").orderBy("timestamp", "asc").get().then(function (querySnapshot) {
         //loop all the objects received from the database call
         querySnapshot.forEach(function (doc) {
+>>>>>>> 11580ce9ef4b3c130ed65014b88221b3b2c297f4
             // doc.data() is never undefined for query doc snapshots
             console.log(doc.id, " => ", doc.data());
             // pushing the data in the data object

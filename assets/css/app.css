@@ -19,6 +19,66 @@ html, body {
 }
 
 .overlay {
+<<<<<<< HEAD
+  position: absolute;
+  z-index: 999;
+  width: 100vw;
+  height: 100vh;
+  background: #fff;
+  background-image: linear-gradient(#182022, #78858b);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.overlay__form {
+    width: 400px;
+    height: 400px;
+    background: #E8E2D6;
+    box-shadow: 0px 0px 10px #00000005, 0px 15px 40px #00000020;
+    padding: 8px 16px 24px 16px;
+}
+
+.-hidden {
+  display: none;
+}
+
+.btn {
+  padding: 8px 14px;
+  border: none;
+  background: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.btn.-primary {
+  background: #8A8880;
+  color: #fefefe;
+  border-bottom:  2px solid #9c9c9c;
+
+}
+
+.form__group {
+  border: 1px solid rgb(223, 229, 236);
+  padding: 4px 8px;
+  margin: 8px 0;
+  background: #fefefe;
+  display: flex;
+  flex-flow: column nowrap;
+  border-radius: 4px;
+}
+
+.form__group label {
+  font-size: 12px;
+  color: rgb(127, 147, 190);
+  margin-bottom: 8px;
+}
+
+.form__group input {
+  border: none;
+  background: none;
+  font-family: var(--font);
+=======
     position: absolute;
     z-index: 999;
     width: 100vw;
@@ -73,6 +133,7 @@ html, body {
     border: none;
     background: none;
     font-family: var(--font);
+>>>>>>> 11580ce9ef4b3c130ed65014b88221b3b2c297f4
 }
 
 .container {
@@ -92,6 +153,14 @@ html, body {
 
 .nav {
     display: flex;
+<<<<<<< HEAD
+    flex-direction: row; 
+    justify-content: center;
+    align-items: center; 
+    height: 100%;
+}
+
+=======
     flex-direction: row;
     justify-content: center;
     align-items: center;
@@ -103,6 +172,7 @@ ul {
     list-style-type: none;
 }
 
+>>>>>>> 11580ce9ef4b3c130ed65014b88221b3b2c297f4
 .nav ul li {
     list-style-type: none;
     display: grid;
@@ -111,6 +181,13 @@ ul {
     letter-spacing: 1.5px;
     font-variant: small-caps;
     margin: 25px 0;
+<<<<<<< HEAD
+}
+
+/* needs to be deleted/just ex for now */
+.nav ul li:first-child {
+    color: rgb(65, 152, 173);
+=======
     cursor: pointer;
 }
 
@@ -127,10 +204,15 @@ ul {
 
 .nav ul li:first-child {
     color: #4198ad;
+>>>>>>> 11580ce9ef4b3c130ed65014b88221b3b2c297f4
 }
 
 .nav i {
     line-height: 35px;
+<<<<<<< HEAD
+
+=======
+>>>>>>> 11580ce9ef4b3c130ed65014b88221b3b2c297f4
 }
 
 .informationContainer {
@@ -146,11 +228,19 @@ ul {
     padding: 25px 0;
     border-bottom: 0.1px solid rgba(223, 229, 236, 0.246);
     display: flex;
+<<<<<<< HEAD
+    padding: 1.5%;
+}
+
+.informationHeader button {
+    padding: 13px 50px;
+=======
     padding: 2%;
 }
 
 .informationHeader button {
     padding: 13px 10px;
+>>>>>>> 11580ce9ef4b3c130ed65014b88221b3b2c297f4
     background-color: none;
     background: none;
     border-radius: 3px;
@@ -172,12 +262,19 @@ ul {
 
 .usersBtn {
     width: 75%;
+<<<<<<< HEAD
+}
+
+.usersBtn button {
+    margin-right: 20px;
+=======
     display: flex;
     /*justify-content: center;*/
 }
 
 .usersBtn button {
     margin-right: 10px;
+>>>>>>> 11580ce9ef4b3c130ed65014b88221b3b2c297f4
 }
 
 .usersBtn i {
@@ -186,8 +283,12 @@ ul {
 
 .crudBtn {
     width: 25%;
+<<<<<<< HEAD
+    text-align: right;
+=======
     display: flex;
     justify-content: flex-end;
+>>>>>>> 11580ce9ef4b3c130ed65014b88221b3b2c297f4
 }
 
 .crudBtn button {
@@ -238,6 +339,15 @@ ul {
     text-transform: uppercase;
 }
 
+<<<<<<< HEAD
+.cameraContainer {
+    background: url('../images/room.png') no-repeat;
+    margin: 1.5%;
+    overflow: hidden;
+    border-radius: 3px;
+    max-height:  77.5%;
+    max-width:  74%;
+=======
 .cameraSection {
     padding: 2%;
 }
@@ -248,6 +358,7 @@ ul {
     border-radius: 3px;
     max-height: 77.5%;
     max-width: 74%;
+>>>>>>> 11580ce9ef4b3c130ed65014b88221b3b2c297f4
     height: 100%;
     width: 100%;
     position: fixed;
@@ -256,7 +367,11 @@ ul {
 .cameraOverlayContainer {
     z-index: 10;
     position: absolute;
+<<<<<<< HEAD
+    bottom: 0;
+=======
     /*bottom: 0;*/
+>>>>>>> 11580ce9ef4b3c130ed65014b88221b3b2c297f4
 }
 
 .cameraOverlayContainer.right {
@@ -265,12 +380,34 @@ ul {
 }
 
 .cameraOverlayContainer.right i {
+<<<<<<< HEAD
+    font-size: 30px;
+=======
     font-size: 25px;
+>>>>>>> 11580ce9ef4b3c130ed65014b88221b3b2c297f4
     margin: 20px 0 20px 5px;
     color: rgb(169, 182, 211);
 }
 
 .cameraOverlayContainer.left {
+<<<<<<< HEAD
+    font-size: 50px;
+    display: flex;
+    left: 21.5%;
+    margin: 5% 0;
+}
+
+.cameraOverlayContainer.left i {
+    margin: 0 75px 0 100px;
+}
+
+/* can be removed - just an ex of ON*/
+.cameraOverlayContainer.left h3:first-child {
+    color: rgb(65, 152, 173);
+}
+
+
+=======
     font-size: 25px;
     left: 21.5%;
     margin: 0 0 5% 5%;
@@ -290,6 +427,7 @@ ul {
     color: #4198ad;
 }
 
+>>>>>>> 11580ce9ef4b3c130ed65014b88221b3b2c297f4
 .cameraOverlayContainer h3 {
     text-align: right;
     color: rgba(223, 229, 236, 0.20);
@@ -299,18 +437,32 @@ ul {
 .cameraOverlayContainer h3 i:hover {
     color: rgb(65, 152, 173);
     transition: 0.5s
+<<<<<<< HEAD
+    
+}
+
+/* can be removed - just an ex of OFF*/
+=======
 }
 
 /* can be removed - just an ex of OFF*/
 
+>>>>>>> 11580ce9ef4b3c130ed65014b88221b3b2c297f4
 .cameraOverlayContainer.left h3:first-child:hover {
     color: rgba(223, 229, 236, 0.20);
     transition: 0.5s;
 }
 
+<<<<<<< HEAD
+
+.temperature {
+    width: 150px;
+    height: 150px;
+=======
 .temperature {
     width: 85px;
     height: 85px;
+>>>>>>> 11580ce9ef4b3c130ed65014b88221b3b2c297f4
     background: rgba(169, 182, 211, 0.05);
     display: flex;
     justify-content: center;
@@ -326,7 +478,11 @@ ul {
 }
 
 .temperature__display {
+<<<<<<< HEAD
+    font-size: 50px;
+=======
     font-size: 25px;
+>>>>>>> 11580ce9ef4b3c130ed65014b88221b3b2c297f4
 }
 
 .temperature__unit {
@@ -337,8 +493,13 @@ ul {
 }
 
 .temperature.-outer {
+<<<<<<< HEAD
+    width: 200px;
+    height: 200px;
+=======
     width: 125px;
     height: 125px;
+>>>>>>> 11580ce9ef4b3c130ed65014b88221b3b2c297f4
     background: rgba(223, 229, 236, 0.05);
     /* border-width: 32px;
     border-style: solid;
@@ -346,10 +507,19 @@ ul {
     box-shadow: inset 0 0 15px #00000020;
 }
 
+<<<<<<< HEAD
+.tempChart {
+    width: 80%;
+    height: 35%;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+=======
 .tempContainer {
     position: fixed;
     right: 5%;
     bottom: 5%;
+>>>>>>> 11580ce9ef4b3c130ed65014b88221b3b2c297f4
 }
 
 .switch__item {
@@ -416,13 +586,19 @@ ul {
     height: 48px;
 }
 
+<<<<<<< HEAD
+.switch__details > * {
+=======
 .switch__details>* {
+>>>>>>> 11580ce9ef4b3c130ed65014b88221b3b2c297f4
     margin: 0;
 }
 
 .switch__title {
     font-weight: 700;
     font-size: 20px;
+<<<<<<< HEAD
+=======
 }
 
 #chartOverlay, #cameraOverlay {
@@ -672,4 +848,5 @@ textarea.login-form-control {
         font-size: 19px;
         margin-bottom: 50px;
     }
+>>>>>>> 11580ce9ef4b3c130ed65014b88221b3b2c297f4
 }
