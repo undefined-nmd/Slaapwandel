@@ -419,6 +419,7 @@ const showHeartRate = () => {
             }
         })
         /*
+        
         if (doc.exists) {
             console.log("Document data:", doc.data());
             console.log("heart rate is:", doc.data().rate);
