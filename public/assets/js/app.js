@@ -515,19 +515,6 @@ window.onclick = function(event) {
     }
 }
 
-//function to send an sms to the parent when Anna hasn't woken up yet
-const sendSMS = () => {
-  client.messages
-  .create({
-     body: 'Anna is nog niet wakker geworden!',
-     from: '+32460207022',
-     to: '+32497313223'
-   })
-  .then(message => console.log(message.sid));
-}
+showData();
 
-
-
- showData();
-
- showAllHeartRate();
+showAllHeartRate();
