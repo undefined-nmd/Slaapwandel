@@ -259,7 +259,7 @@ loginBtn.addEventListener('click', (e) => {
     firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
         .then(() => {
             firebase.auth().signInWithEmailAndPassword(email, pass).then(()=>{
-                
+
                 localStorage.setItem('email', email)
                 localStorage.setItem('userId', firebase.auth().currentUser.uid)
                 notyf.success('Welcome back!');
@@ -397,11 +397,20 @@ function checkTime(i) {
     return i;
 }
 
-const showHeartRate = () => {
-    // creating the path to the database
+const showHeartRate = (rate) => {
+    // create hartrate object with color based on rate
     let heart = sensorRef.doc('hartSensor');
     let pulse = document.querySelector('.temperature');
+    document.getElementById("heartrate").innerHTML = rate;
+            if(rate > 110){
+                pulse.classList.remove('-outer')
+                pulse.classList.add('red')
+            }else{
+                pulse.classList.remove('red')
+                pulse.classList.add('-outer')
+            }
     // getting the heart rate from the document
+    /*
     db.collection('hartSensor').orderBy("timestamp", "desc").limit(1).get().then(function (doc) {
         // if the document excist and is found
         console.log(doc.docs[0].id)
@@ -418,6 +427,7 @@ const showHeartRate = () => {
                 pulse.classList.add('-outer')
             }
         })
+        */
         /*
         if (doc.exists) {
             console.log("Document data:", doc.data());
@@ -430,9 +440,11 @@ const showHeartRate = () => {
             console.log("No such document!");
         }
         */
+       /*
     }).catch(function (error) {
         console.log("Error getting document:", error);
     });
+    */
 }
 
 const showAllHeartRate = () => {
@@ -512,8 +524,58 @@ const getDashboard = (id) => {
     .then(function(querySnapshot){
         console.log(querySnapshot.data())
         makeDashboard(querySnapshot.data()) 
+        getDashboardSensors(id)
+        
     })
 }
+
+// get sensordata of current people
+const getDashboardSensors = (id) => {
+    db.collection('Users').doc(localStorage.getItem('userId')).collection('People').doc(id).collection('Sensors').get()
+        .then(function(querySnapshot){
+            console.log(querySnapshot)
+            // alarm
+            console.log(querySnapshot.docs[0].data())
+            //hartsensor
+            console.log(querySnapshot.docs[1].data())
+            //const heartrate = document.getElementById('heartrate');
+            //showHeartRate(querySnapshot.docs[1].data().rate)
+            //heartrate.innerHTML = querySnapshot.docs[1].data().rate
+            //humid
+            console.log(querySnapshot.docs[2].data())
+            const humidityValue = document.getElementById('humidityValue');
+            humidityValue.innerHTML = querySnapshot.docs[2].data().humid
+            //keypad
+            console.log(querySnapshot.docs[3].data())
+            //soundSensor
+            console.log(querySnapshot.docs[4].data())
+            //tempSensor
+            console.log(querySnapshot.docs[5].data())
+            const temperature = document.getElementById('temperature');
+            temperature.innerHTML = querySnapshot.docs[5].data().temp
+            //vibratieSensor
+            console.log(querySnapshot.docs[6].data())
+            //makeDashboard(querySnapshot.data()) 
+            db.collection('Users').doc(localStorage.getItem('userId')).collection('People')
+            .doc(id).collection('Sensors').doc('hartSensor').collection('refreshes').orderBy("timestamp", "desc").limit(1)
+            .get().then(function(doc){
+                console.log('hartbeat')
+                console.log(doc.docs[0].data().rate)
+                showHeartRate(doc.docs[0].data().rate)
+            })
+        })
+}
+
+db.collection('Users').doc(localStorage.getItem('userId')).collection('People')
+            .doc('Indy').collection('Sensors').doc('hartSensor').collection('refreshes').orderBy("timestamp", "desc").limit(1)
+            .onSnapshot(snapshot => {
+                console.log(snapshot.docs[0].data().rate)
+                let changes = snapshot.docChanges();
+                showHeartRate(snapshot.docs[0].data().rate)
+                //console.log(changes.data())
+                console.log(changes)
+                console.log('refreshes')
+            })
 /*
 * Make personal dashboard with people data
 *
@@ -522,10 +584,9 @@ const makeDashboard = (data) => {
     console.log('make dashboard')
     console.log(data)
     const peoplename = document.getElementById('peoplename')
-    const peoplehart = document.getElementById('peoplehart')
+
     // change innerhtml to the data 
     peoplename.innerHTML = data.name
-    peoplehart.innerHTML = data.hartslag
 }
 
 
@@ -557,7 +618,13 @@ createBtn.addEventListener('click', (e) => {
     })
     .then(function(docRef) {
         //console.log("Document written with ID: ", docRef.id);
-        notyf.success('New dashboard succesfully made!');
+        db.collection('Users').doc(userId).collection('People').doc(newname).collection('Sensors').doc('alarmCheck').set({
+            alarm: false ,
+        }).then(function() {
+            notyf.success('New dashboard succesfully made!');
+        })
+
+        
     })
     .catch(function(error) {
         console.error("Error adding document: ", error);
@@ -569,4 +636,4 @@ createBtn.addEventListener('click', (e) => {
 
 showData();
 
-showAllHeartRate();
+//showAllHeartRate();

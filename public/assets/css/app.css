@@ -337,8 +337,8 @@ ul {
     background-color: rgba(255, 0, 0, 0.342);
     border-radius: 50%;
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
-    -webkit-animation: pulse-dot 1.25s cubic-bezier(0.455, 0.03, 0.515, 0.955) -0.4s infinite;
-            animation: pulse-dot 1.25s cubic-bezier(0.455, 0.03, 0.515, 0.955) -0.4s infinite;
+    -webkit-animation: pulse-dot 0.75s cubic-bezier(0.455, 0.03, 0.515, 0.955) -0.4s infinite;
+            animation: pulse-dot 0.75s cubic-bezier(0.455, 0.03, 0.515, 0.955) -0.4s infinite;
   }
   @-webkit-keyframes pulse-ring {
     0% {
