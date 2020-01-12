@@ -337,8 +337,6 @@ signoutBtn.addEventListener('click', (e) => {
     
 })
 
-
-
 loginBtn.addEventListener('click', (e) => {
     e.preventDefault()
     const email = document.querySelector('#email').value
@@ -356,8 +354,6 @@ loginBtn.addEventListener('click', (e) => {
         })
         .catch(err => console.error(err))
 })
-
-
 
 /*
 * NAV
@@ -405,17 +401,19 @@ cameraBtn.addEventListener('click', (e) => {
 })
 
 settingsBtn.addEventListener('click', (e) => {
-e.preventDefault()
+    e.preventDefault()
 
-chartOverlay.style.display = "none";
-mainOverlay.style.display = "none";
-cameraOverlay.style.display = "none";
-settingsOverlay.style.display = "block";
-newDashboardOverlay.style.display ="none"
-chartBtn.style.color = "#ffff";
-mainBtn.style.color = "#ffff";
-cameraBtn.style.color = "#ffff";
-settingsBtn.style.color ='#4198ad'
+    chartOverlay.style.display = "none";
+    mainOverlay.style.display = "none";
+    cameraOverlay.style.display = "none";
+    settingsOverlay.style.display = "block";
+    newDashboardOverlay.style.display ="none"
+    chartBtn.style.color = "#ffff";
+    mainBtn.style.color = "#ffff";
+    cameraBtn.style.color = "#ffff";
+    settingsBtn.style.color ='#4198ad'
+
+    settings();
 })
 /*
 * Reuseable function for nav buttons
@@ -447,7 +445,19 @@ cameraBtn.addEventListener("click", navButton(cameraOverlay, chartOverlay, mainO
     checkAlarm()
 } */
 
+const settings = () => {
+    console.log('settings')
 
+    db.collection('Users').doc(localStorage.getItem('userId')).collection('People').get()
+    .then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+
+            console.log(doc.data())
+
+        });
+    });
+
+}
 //function to show all data in the dashboard
 const showData = () => {
     console.log('showdata')
