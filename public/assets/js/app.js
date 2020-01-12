@@ -1,3 +1,5 @@
+
+const notyf = new Notyf();
 const db = firebase.firestore()
  const sensorRef = db.collection('sensoren');
  const rateRef = db.collection('hartSensor');
@@ -96,6 +98,12 @@ const db = firebase.firestore()
      sensorRef.doc("vibratieSensor").set({
          vibr: true
      })
+     notyf.error({
+        message: 'Accept the terms before moving forward',
+        duration: 9000,
+        icon: false
+      })
+
 
  }
 
@@ -226,6 +234,7 @@ const db = firebase.firestore()
      if (user) {
          if (!overlay.classList.contains('-hidden')) {
              overlay.classList.add('-hidden')
+             notyf.success('Welcome back!');
          }
          initApp()
      } else {
@@ -269,7 +278,6 @@ const getSignup = () => {
  chartBtn.addEventListener('click', (e) => {
      e.preventDefault()
 
-     console.log(chartBtn);
      mainOverlay.style.display = "none";
      cameraOverlay.style.display = "none";
      chartOverlay.style.display = "block";
@@ -281,13 +289,14 @@ const getSignup = () => {
  mainBtn.addEventListener('click', (e) => {
      e.preventDefault()
 
-     console.log(mainBtn);
      chartOverlay.style.display = "none";
      cameraOverlay.style.display = "none";
      mainOverlay.style.display = "block";
      chartBtn.style.color = "#ffff";
      cameraBtn.style.color = "#ffff";
      mainBtn.style.color = "#4198ad";
+
+
  })
 
  cameraBtn.addEventListener('click', (e) => {

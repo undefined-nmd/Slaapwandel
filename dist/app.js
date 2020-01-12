@@ -24,9 +24,22 @@ var _routes = require('./routes');
 
 var _routes2 = _interopRequireDefault(_routes);
 
+var _ngrok = require('ngrok');
+
+var _ngrok2 = _interopRequireDefault(_ngrok);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 const app = (0, _express2.default)();
+
+(async function () {
+  const url = await _ngrok2.default.connect(8080);
+  const apiUrl = _ngrok2.default.getUrl();
+  const api = _ngrok2.default.getApi();
+  let data = await api.get('api/tunnels');
+  data = JSON.parse(data);
+  console.log("saved " + data.tunnels[0].public_url);
+})();
 app.disable('x-powered-by');
 
 // View engine setup
