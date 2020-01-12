@@ -6,10 +6,11 @@ import routes from './routes';
 import ngrok from 'ngrok';
 
 // twilio details
+/*
 const accountSid = 'ACfa4f00deb9e5b377b9fa34a7f22e79c5';
 const authToken = 'c2cb348bacbbb0e0dda7326ded417364';
 const client = require('twilio')(accountSid, authToken);
-
+*/
 const app = express();
 
 (async function() {
@@ -56,7 +57,7 @@ app.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
 });
 
 //function to send an sms to the parent when Anna hasn't woken up yet
-const sendSMS = () => {
+/*const sendSMS = () => {
   client.messages
   .create({
      body: 'Anna is nog niet wakker geworden!',
@@ -64,6 +65,6 @@ const sendSMS = () => {
      to: '+32497313223'
    })
   .then(message => console.log("de message id is" + message.sid));
-}
+}*/
 
 export default app;

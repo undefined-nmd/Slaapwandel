@@ -31,10 +31,11 @@ var _ngrok2 = _interopRequireDefault(_ngrok);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // twilio details
+/*
 const accountSid = 'ACfa4f00deb9e5b377b9fa34a7f22e79c5';
 const authToken = 'c2cb348bacbbb0e0dda7326ded417364';
 const client = require('twilio')(accountSid, authToken);
-
+*/
 const app = (0, _express2.default)();
 
 (async function () {
@@ -79,13 +80,15 @@ app.use((err, req, res, next) => {
 });
 
 //function to send an sms to the parent when Anna hasn't woken up yet
-const sendSMS = () => {
-  client.messages.create({
-    body: 'Anna is nog niet wakker geworden!',
-    from: '+32460207022',
-    to: '+32497313223'
-  }).then(message => console.log("de message id is" + message.sid));
-};
+/*const sendSMS = () => {
+  client.messages
+  .create({
+     body: 'Anna is nog niet wakker geworden!',
+     from: '+32460207022',
+     to: '+32497313223'
+   })
+  .then(message => console.log("de message id is" + message.sid));
+}*/
 
 exports.default = app;
 //# sourceMappingURL=app.js.map

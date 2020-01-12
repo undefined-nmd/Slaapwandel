@@ -7,7 +7,7 @@ const routes = Router();
  * GET home page
  */
 routes.get('/', (req, res) => {
-  res.render('index', { title: 'Slaapwandel Project' });
+  res.sendFile(path.join(__dirname ,'../public/index.html'));
 });
 
 routes.get('/signup', (req, res) => {

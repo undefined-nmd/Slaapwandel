@@ -18,7 +18,7 @@ const routes = (0, _express.Router)();
  * GET home page
  */
 routes.get('/', (req, res) => {
-  res.render('index', { title: 'Slaapwandel Project' });
+  res.sendFile(_path2.default.join(__dirname, '../public/index.html'));
 });
 
 routes.get('/signup', (req, res) => {
