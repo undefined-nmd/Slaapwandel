@@ -386,6 +386,7 @@ function checkTime(i) {
 const showHeartRate = () => {
     // creating the path to the database
     let heart = sensorRef.doc('hartSensor');
+    let pulse = document.querySelector('.temperature');
     // getting the heart rate from the document
     db.collection('hartSensor').orderBy("timestamp", "desc").limit(1).get().then(function (doc) {
         // if the document excist and is found
@@ -395,6 +396,13 @@ const showHeartRate = () => {
         db.collection('hartSensor').doc(docid).get().then(function (d){
             console.log(d.data())
             document.getElementById("heartrate").innerHTML = d.data().rate;
+            if(d.data().rate > 110){
+                pulse.classList.remove('.-outer')
+                pulse.classList.add('.red')
+            }else{
+                pulse.classList.remove('.red')
+                pulse.classList.add('.-outer')
+            }
         })
         /*
         if (doc.exists) {
