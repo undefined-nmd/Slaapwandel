@@ -14,7 +14,7 @@ const newDashboardBtn = document.querySelector('#newDashboardBtn');
 const createBtn = document.querySelector('#createBtn');
 
 const usersBtn = document.querySelector('.usersBtn')
-
+const settingsUsersBtn = document.querySelector('.settingsUsersBtn')
 // sign up
 const signupBtn = document.querySelector('#signupBtn');
 const makeAccountBtn = document.querySelector('#makeAccountBtn')
@@ -445,19 +445,36 @@ cameraBtn.addEventListener("click", navButton(cameraOverlay, chartOverlay, mainO
     checkAlarm()
 } */
 
-const settings = () => {
+const createSettings = () => {
     console.log('settings')
-
     db.collection('Users').doc(localStorage.getItem('userId')).collection('People').get()
     .then(function(querySnapshot) {
         querySnapshot.forEach(function(doc) {
-
-            console.log(doc.data())
-
+            var button = document.createElement("button");
+            button.setAttribute("id", doc.data().name );
+            button.setAttribute("class", 'settingsbtn' );
+            var name = document.createTextNode(doc.data().name); 
+            // add the text node to the newly created div
+            button.appendChild(name);  
+            console.log(doc.id, " => ", doc.data());
+            settingsUsersBtn.appendChild(button);
         });
     });
-
 }
+
+document.addEventListener('click',function(e){
+    if(e.target && e.target.className== 'settingsbtn'){
+          console.log('settingsbtn')
+          console.log(e.target.id)
+          // get 'people' with this id out of the firestore
+          getSettings(e.target.id)
+     }
+ });
+
+ const getSettings = (id) => {
+    console.log('settings')
+    console.log(id)
+ } 
 //function to show all data in the dashboard
 const showData = () => {
     console.log('showdata')
@@ -734,5 +751,5 @@ createBtn.addEventListener('click', (e) => {
 
 
 showData();
-
+createSettings();
 //showAllHeartRate();
