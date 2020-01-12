@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import path from 'path';
 
 const routes = Router();
 
@@ -9,6 +10,13 @@ routes.get('/', (req, res) => {
   res.render('index', { title: 'Slaapwandel Project' });
 });
 
+routes.get('/signup', (req, res) => {
+  res.sendFile(path.join(__dirname ,'../public/signup.html'));
+});
+
+routes.get('/walkthrough', (req, res) => {
+  res.sendFile(path.join(__dirname ,'../public/walkthrough.html'));
+});
 /**
  * GET /list
  *

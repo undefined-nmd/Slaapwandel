@@ -55,6 +55,7 @@ app.use(_express2.default.static(_path2.default.join(__dirname, '../public')));
 
 // Routes
 app.use('/', _routes2.default);
+app.use('/signup', _routes2.default);
 
 // Catch 404 and forward to error handler
 app.use((req, res, next) => {
