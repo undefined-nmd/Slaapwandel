@@ -349,10 +349,14 @@ loginBtn.addEventListener('click', (e) => {
                 localStorage.setItem('email', email)
                 localStorage.setItem('userId', firebase.auth().currentUser.uid)
                 notyf.success('Welcome back!');
+            }).catch(error => {
+                notyf.error('ohno: ' + error)
             })
             
         })
-        .catch(err => console.error(err))
+        .catch(error => {
+            notyf.error('ohno: ' + error)
+        })
 })
 
 /*
