@@ -22,6 +22,9 @@ const db = firebase.firestore()
  const signupBtn = document.querySelector('#signupBtn');
  const makeAccountBtn = document.querySelector('#makeAccountBtn')
 
+// settings
+const settingsBtn = document.querySelector('#settingsBtn')
+const settingsOverlay = document.querySelector('settingsOverlay')
  const mainOverlay = document.querySelector('#mainOverlay');
  const mainBtn = document.querySelector('#mainBtn');
  const cameraOverlay = document.querySelector('#cameraOverlay');
@@ -252,16 +255,7 @@ const db = firebase.firestore()
          .catch(err => console.error(err))
  })
 
- signupBtn.addEventListener('click', (e) => {
-    e.preventDefault()
-    
-    console.log('signup')
-})
 
-const getSignup = () => {
-//
-
-}
 
  /*
  * NAV
@@ -276,6 +270,7 @@ const getSignup = () => {
      mainBtn.color = "#ffff";
      cameraBtn.style.color = "#ffff";
      chartBtn.style.color = "#4198ad";
+     settingsBtn.style.color ='#ffff'
  })
 
  mainBtn.addEventListener('click', (e) => {
@@ -288,6 +283,7 @@ const getSignup = () => {
      chartBtn.style.color = "#ffff";
      cameraBtn.style.color = "#ffff";
      mainBtn.style.color = "#4198ad";
+     settingsBtn.style.color ='#ffff'
  })
 
  cameraBtn.addEventListener('click', (e) => {
@@ -299,8 +295,21 @@ const getSignup = () => {
      chartBtn.style.color = "#ffff";
      mainBtn.style.color = "#ffff";
      cameraBtn.style.color = "#4198ad";
+     settingsBtn.style.color ='#ffff'
  })
 
+ settingsBtn.addEventListener('click', (e) => {
+    e.preventDefault()
+
+    chartOverlay.style.display = "none";
+    mainOverlay.style.display = "none";
+    cameraOverlay.style.display = "none";
+    settingsOverlay.style.display = "block";
+    chartBtn.style.color = "#ffff";
+    mainBtn.style.color = "#ffff";
+    cameraBtn.style.color = "#ffff";
+    settingsBtn.style.color ='#4198ad'
+})
  /*
  * Reuseable function for nav buttons
  *//*
@@ -335,6 +344,7 @@ const getSignup = () => {
  //function to show all data in the dashboard
  const showData = () => {
      //show current date
+     console.log(localStorage.getItem('email'))
      n = new Date();
      y = n.getFullYear();
      m = n.getMonth() + 1;
@@ -371,8 +381,16 @@ const getSignup = () => {
      // creating the path to the database
      let heart = sensorRef.doc('hartSensor');
      // getting the heart rate from the document
-     heart.get().then(function (doc) {
+     db.collection('hartSensor').orderBy("timestamp", "desc").limit(1).get().then(function (doc) {
          // if the document excist and is found
+         console.log(doc.docs[0].id)
+         let docid = doc.docs[0].id
+        
+         db.collection('hartSensor').doc(docid).get().then(function (d){
+             console.log(d.data())
+             document.getElementById("heartrate").innerHTML = d.data().rate;
+         })
+         /*
          if (doc.exists) {
              console.log("Document data:", doc.data());
              console.log("heart rate is:", doc.data().rate);
@@ -383,6 +401,7 @@ const getSignup = () => {
              // doc.data() will be undefined in this case
              console.log("No such document!");
          }
+         */
      }).catch(function (error) {
          console.log("Error getting document:", error);
      });
@@ -428,7 +447,7 @@ const getPeople = () => {
 
     //const userId = firebase.auth().currentUser.uid
     // people names and make buttons for dashboard
-    db.collection('Users').doc('Q5DVxLu7AYdRQr98OhgN9USACM52').collection('People').get()
+    db.collection('Users').doc(localStorage.getItem('userId')).collection('People').get()
     .then(function(querySnapshot) {
         querySnapshot.forEach(function(doc) {
             // doc.data() is never undefined for query doc snapshots
@@ -473,7 +492,6 @@ createBtn.addEventListener('click', (e) => {
     .then(function(docRef) {
         console.log("Document written with ID: ", docRef.id);
         modal.style.display = "block";
-
     })
     .catch(function(error) {
         console.error("Error adding document: ", error);

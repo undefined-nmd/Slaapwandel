@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sign up</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
+     <link rel="stylesheet" href="./assets/css/app.css">
+     <script src="https://kit.fontawesome.com/bd8617b409.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <section class="overlay">
+        <div class="overlay__form">
+            <img class="loginLogo" src="../../../assets/logo_white.svg">
+            <h3 class="loginTitle">Maak een account!</h3>
+            <p class="loginSubtitle">Slaapwandelen, word wakker vooraleer je wakker wordt.</p>
+            <form class="loginForm" method="post">
+                <label class="login-form-group" for="email">Email
+                    <input class="login-form-control" type="email" name="emailsignup" id="emailsignup" autofocus>
+                </label>
+
+                <label class="login-form-group" for="password">Password
+                    <input class="login-form-control" type="password" name="passwordsignup" id="passwordsignup">
+                </label>
+
+                <button id="makeAccountBtn" class="loginButton">Make Account</button>
+                <button id="cancelBtn" class="loginButton"><a href="/index.html">Cancel</a></button>
+            </form>
+        </div>
+    </section>
+ <!-- Scripts -->
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
+ <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-app.js"></script>
+ <!-- Add desired Firebase functions -->
+ <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-analytics.js"></script>
+ <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-auth.js"></script>
+ <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-firestore.js"></script>
+ <!-- Charts -->
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
+ <script src="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
+ <!-- Add own scripts -->
+ <script src="assets/js/firebase-details.js"></script>
+ <script src="assets/js/signup.js"></script>
+</body>
+</html>
