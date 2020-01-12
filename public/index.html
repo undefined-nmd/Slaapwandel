@@ -92,7 +92,7 @@
                     <h3 class="humidity"><span id="peoplename"></span><i class="fas fa-user"></i></h3>
                      <h3 class="humidity"><span id="date"></span><i class="fas fa-calendar-alt"></i></h3>
                      <h3 class="humidity"><span id="time"></span> PM <i class="fas fa-clock"></i></h3>
-                     <h3 class="humidity"><span id="humidityValue">84</span> % <i class="fas fa-tint"></i> </h3>
+                     <h3 class="humidity"><span id="humidityValue"></span> % <i class="fas fa-tint"></i> </h3>
                      <h3 class="humidity"><span id="temperature"></span> °C <i class="fas fa-thermometer-half"></i>
                      </h3>
                      <main class="tempContainer">
@@ -113,9 +113,15 @@
              <canvas id="myChart" height="450" width="600"></canvas>
          </section>
 
-         <!--CHART-->
+         <!--CHART              <div class="ct-chart ct-perfect-fourth"></div>
+-->
          <section id="chartOverlay" class="informationContainer">
-             <div class="ct-chart ct-perfect-fourth"></div>
+            <figure class="highcharts-figure">
+                <div id="container"></div>
+                <p class="highcharts-description">
+                    Chart showing data updating every second, with old data being removed.
+                </p>
+            </figure>
          </section>
 
           <!-- Settings-->
@@ -155,9 +161,15 @@
      <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-analytics.js"></script>
      <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-auth.js"></script>
      <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-firestore.js"></script>
-     <!-- Charts -->
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
+     <!-- Charts
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
      <script src="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
+     <script src="./assets/js/Chart.js"></script>
+    -->
+     <script src="https://code.highcharts.com/highcharts.js"></script>
+     <script src="https://code.highcharts.com/modules/exporting.js"></script>
+     <script src="https://code.highcharts.com/modules/export-data.js"></script>
+     <script src="https://code.highcharts.com/modules/accessibility.js"></script>
      
      <!-- Add own scripts -->
      <script src="assets/js/firebase-details.js"></script>
