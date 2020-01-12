@@ -15,17 +15,13 @@ const createBtn = document.querySelector('#createBtn');
 
 const usersBtn = document.querySelector('.usersBtn')
 
-// modal
-const modal = document.getElementById("myModal");
-let span = document.getElementsByClassName("close")[0];
-
 // sign up
 const signupBtn = document.querySelector('#signupBtn');
 const makeAccountBtn = document.querySelector('#makeAccountBtn')
 
 // settings
 const settingsBtn = document.querySelector('#settingsBtn')
-const settingsOverlay = document.querySelector('settingsOverlay')
+const settingsOverlay = document.querySelector('#settingsOverlay')
 const mainOverlay = document.querySelector('#mainOverlay');
 const mainBtn = document.querySelector('#mainBtn');
 const cameraOverlay = document.querySelector('#cameraOverlay');
@@ -247,6 +243,10 @@ firebase.auth().onAuthStateChanged(user => {
 signoutBtn.addEventListener('click', (e) => {
     e.preventDefault()
     firebase.auth().signOut();
+
+    localStorage.removeItem('email')
+    localStorage.removeItem('userId')
+    
 })
 
 
@@ -258,7 +258,13 @@ loginBtn.addEventListener('click', (e) => {
 
     firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
         .then(() => {
-            firebase.auth().signInWithEmailAndPassword(email, pass)
+            firebase.auth().signInWithEmailAndPassword(email, pass).then(()=>{
+                
+                localStorage.setItem('email', email)
+                localStorage.setItem('userId', firebase.auth().currentUser.uid)
+                notyf.success('Welcome back!');
+            })
+            
         })
         .catch(err => console.error(err))
 })
@@ -274,6 +280,8 @@ chartBtn.addEventListener('click', (e) => {
     mainOverlay.style.display = "none";
     cameraOverlay.style.display = "none";
     chartOverlay.style.display = "block";
+    settingsOverlay.style.display ="none"
+    newDashboardOverlay.style.display ="none"
     mainBtn.color = "#ffff";
     cameraBtn.style.color = "#ffff";
     chartBtn.style.color = "#4198ad";
@@ -286,6 +294,8 @@ mainBtn.addEventListener('click', (e) => {
     chartOverlay.style.display = "none";
     cameraOverlay.style.display = "none";
     mainOverlay.style.display = "block";
+    settingsOverlay.style.display ="none"
+    newDashboardOverlay.style.display ="none"
     chartBtn.style.color = "#ffff";
     cameraBtn.style.color = "#ffff";
     mainBtn.style.color = "#4198ad";
@@ -298,6 +308,8 @@ cameraBtn.addEventListener('click', (e) => {
     chartOverlay.style.display = "none";
     mainOverlay.style.display = "none";
     cameraOverlay.style.display = "block";
+    settingsOverlay.style.display ="none"
+    newDashboardOverlay.style.display ="none"
     chartBtn.style.color = "#ffff";
     mainBtn.style.color = "#ffff";
     cameraBtn.style.color = "#4198ad";
@@ -311,6 +323,7 @@ chartOverlay.style.display = "none";
 mainOverlay.style.display = "none";
 cameraOverlay.style.display = "none";
 settingsOverlay.style.display = "block";
+newDashboardOverlay.style.display ="none"
 chartBtn.style.color = "#ffff";
 mainBtn.style.color = "#ffff";
 cameraBtn.style.color = "#ffff";
@@ -349,6 +362,7 @@ cameraBtn.addEventListener("click", navButton(cameraOverlay, chartOverlay, mainO
 
 //function to show all data in the dashboard
 const showData = () => {
+    console.log('showdata')
     //show current date
     console.log(localStorage.getItem('email'))
     n = new Date();
@@ -458,54 +472,92 @@ const makeChart = (data) => {
 */
 
 const getPeople = () => {
-
     //const userId = firebase.auth().currentUser.uid
     // people names and make buttons for dashboard
+    console.log('getpeople')
+    console.log(localStorage.getItem('userId'))
     db.collection('Users').doc(localStorage.getItem('userId')).collection('People').get()
     .then(function(querySnapshot) {
+        let i = 0 
         querySnapshot.forEach(function(doc) {
             // doc.data() is never undefined for query doc snapshots
             //<button><i class="fas fa-user-alt"></i> Milo's</button>
             var button = document.createElement("button");
+            button.setAttribute("id", doc.data().name );
+            button.setAttribute("class", 'dashboardbtn' );
             var name = document.createTextNode(doc.data().name); 
             // add the text node to the newly created div
             button.appendChild(name);  
             console.log(doc.id, " => ", doc.data());
             usersBtn.appendChild(button);
+
+
         });
     });
 }
 
-const getDashboard = () => {
-    // 
+document.addEventListener('click',function(e){
+    if(e.target && e.target.className== 'dashboardbtn'){
+          console.log('dashboardbtn')
+          console.log(e.target.id)
+          // get 'people' with this id out of the firestore
+          getDashboard(e.target.id)
+     }
+ });
+
+const getDashboard = (id) => {
+    // people with this id
+    console.log(id)
+    db.collection('Users').doc(localStorage.getItem('userId')).collection('People').doc(id).get()
+    .then(function(querySnapshot){
+        console.log(querySnapshot.data())
+        makeDashboard(querySnapshot.data()) 
+    })
+}
+/*
+* Make personal dashboard with people data
+*
+*/
+const makeDashboard = (data) => {
+    console.log('make dashboard')
+    console.log(data)
+    const peoplename = document.getElementById('peoplename')
+    const peoplehart = document.getElementById('peoplehart')
+    // change innerhtml to the data 
+    peoplename.innerHTML = data.name
+    peoplehart.innerHTML = data.hartslag
 }
 
 
 newDashboardBtn.addEventListener('click', (e) => {
+    // open new dashboard screen
     e.preventDefault()
-
     console.log('plusbtn');
     chartOverlay.style.display = "none";
     cameraOverlay.style.display = "none";
     mainOverlay.style.display = "none";
+    settingsOverlay.style.display ="none";
     newDashboardOverlay.style.display ="block"
 })
 
 
 createBtn.addEventListener('click', (e) => {
+    // make new 'people' in database
     e.preventDefault()
-    const name = document.querySelector('#name').value
-    const gender = document.querySelector('#gender').value
+    const newname = document.querySelector('#newname').value
+    const newgender = document.querySelector('#newgender').value
+    const newhartslag = document.querySelector('#newhartslag').value
 
     const userId = firebase.auth().currentUser.uid
     
-    db.collection('Users').doc(userId).collection('People').add({
-        name: name,
-        gender: gender,
+    db.collection('Users').doc(userId).collection('People').doc(newname).set({
+        name: newname,
+        gender: newgender,
+        hartslag: newhartslag,
     })
     .then(function(docRef) {
-        console.log("Document written with ID: ", docRef.id);
-        modal.style.display = "block";
+        //console.log("Document written with ID: ", docRef.id);
+        notyf.success('New dashboard succesfully made!');
     })
     .catch(function(error) {
         console.error("Error adding document: ", error);
@@ -513,15 +565,7 @@ createBtn.addEventListener('click', (e) => {
     
 })
 
-span.onclick = function() {
-    modal.style.display = "none";
-}
 
-window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
-}
 
 showData();
 
