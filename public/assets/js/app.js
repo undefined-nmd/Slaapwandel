@@ -14,7 +14,7 @@ const newDashboardBtn = document.querySelector('#newDashboardBtn');
 const createBtn = document.querySelector('#createBtn');
 
 const usersBtn = document.querySelector('.usersBtn')
-
+const settingsUsersBtn = document.querySelector('.settingsUsersBtn')
 // sign up
 const signupBtn = document.querySelector('#signupBtn');
 const makeAccountBtn = document.querySelector('#makeAccountBtn')
@@ -121,7 +121,7 @@ const checkAlarm = () => {
         alarm ? activateAlarm() : resetAlarm()
     })
 }
-
+/*
 const updateChart = (chart, rate) => {
     dateLabel = new Date(rate.timestamp.seconds * 1000)
     chart.data.labels.push(dateLabel)
@@ -194,7 +194,7 @@ const createChart = (labels, data) => {
     })
     return myChart
 }
-
+*/
 sensorRef.get().then(function (querySnapshot) {
     querySnapshot.forEach(doc => {
         console.log(doc.data());
@@ -203,6 +203,94 @@ sensorRef.get().then(function (querySnapshot) {
     console.log('Error getting documents', err);
 });
 
+Highcharts.chart('container', {
+    chart: {
+        type: 'spline',
+        animation: Highcharts.svg, // don't animate in old IE
+        marginRight: 10,
+        events: {
+            load: function () {
+
+                // set up the updating of the chart each second
+                var series = this.series[0];
+                setInterval(function () {
+                    var x = (new Date()).getTime(), // current time
+                        y = Math.random();
+                    series.addPoint([x, y], true, true);
+                }, 1000);
+            }
+        }
+    },
+
+    time: {
+        useUTC: false
+    },
+
+    title: {
+        text: 'Live random data'
+    },
+
+    accessibility: {
+        announceNewData: {
+            enabled: true,
+            minAnnounceInterval: 15000,
+            announcementFormatter: function (allSeries, newSeries, newPoint) {
+                if (newPoint) {
+                    return 'New point added. Value: ' + newPoint.y;
+                }
+                return false;
+            }
+        }
+    },
+
+    xAxis: {
+        type: 'datetime',
+        tickPixelInterval: 150
+    },
+
+    yAxis: {
+        title: {
+            text: 'Value'
+        },
+        plotLines: [{
+            value: 0,
+            width: 1,
+            color: '#808080'
+        }]
+    },
+
+    tooltip: {
+        headerFormat: '<b>{series.name}</b><br/>',
+        pointFormat: '{point.x:%Y-%m-%d %H:%M:%S}<br/>{point.y:.2f}'
+    },
+
+    legend: {
+        enabled: false
+    },
+
+    exporting: {
+        enabled: false
+    },
+
+    series: [{
+        name: 'Random data',
+        data: (function () {
+            // generate an array of random data
+            var data = [],
+                time = (new Date()).getTime(),
+                i;
+
+            for (i = -19; i <= 0; i += 1) {
+                data.push({
+                    x: time + i * 1000,
+                    y: Math.random()
+                });
+            }
+            return data;
+        }())
+    }]
+});
+/*
 const initChart = () => {
     return new Promise((resolve, reject) => {
         rateRef.get().then(function (querySnapshot) {
@@ -227,7 +315,7 @@ const initChart = () => {
 
     })
 }
-
+*/
 firebase.auth().onAuthStateChanged(user => {
     if (user) {
         if (!overlay.classList.contains('-hidden')) {
@@ -249,8 +337,6 @@ signoutBtn.addEventListener('click', (e) => {
     
 })
 
-
-
 loginBtn.addEventListener('click', (e) => {
     e.preventDefault()
     const email = document.querySelector('#email').value
@@ -259,17 +345,19 @@ loginBtn.addEventListener('click', (e) => {
     firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
         .then(() => {
             firebase.auth().signInWithEmailAndPassword(email, pass).then(()=>{
-                
+
                 localStorage.setItem('email', email)
                 localStorage.setItem('userId', firebase.auth().currentUser.uid)
                 notyf.success('Welcome back!');
+            }).catch(error => {
+                notyf.error('ohno: ' + error)
             })
             
         })
-        .catch(err => console.error(err))
+        .catch(error => {
+            notyf.error('ohno: ' + error)
+        })
 })
-
-
 
 /*
 * NAV
@@ -317,17 +405,19 @@ cameraBtn.addEventListener('click', (e) => {
 })
 
 settingsBtn.addEventListener('click', (e) => {
-e.preventDefault()
+    e.preventDefault()
 
-chartOverlay.style.display = "none";
-mainOverlay.style.display = "none";
-cameraOverlay.style.display = "none";
-settingsOverlay.style.display = "block";
-newDashboardOverlay.style.display ="none"
-chartBtn.style.color = "#ffff";
-mainBtn.style.color = "#ffff";
-cameraBtn.style.color = "#ffff";
-settingsBtn.style.color ='#4198ad'
+    chartOverlay.style.display = "none";
+    mainOverlay.style.display = "none";
+    cameraOverlay.style.display = "none";
+    settingsOverlay.style.display = "block";
+    newDashboardOverlay.style.display ="none"
+    chartBtn.style.color = "#ffff";
+    mainBtn.style.color = "#ffff";
+    cameraBtn.style.color = "#ffff";
+    settingsBtn.style.color ='#4198ad'
+
+    settings();
 })
 /*
 * Reuseable function for nav buttons
@@ -359,7 +449,40 @@ cameraBtn.addEventListener("click", navButton(cameraOverlay, chartOverlay, mainO
     checkAlarm()
 } */
 
+const createSettings = () => {
+    console.log('settings')
+    db.collection('Users').doc(localStorage.getItem('userId')).collection('People').get()
+    .then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+            var button = document.createElement("button");
+            button.setAttribute("id", doc.data().name );
+            button.setAttribute("class", 'settingsbtn' );
+            var name = document.createTextNode(doc.data().name); 
+            // add the text node to the newly created div
+            button.appendChild(name);  
+            console.log(doc.id, " => ", doc.data());
+            settingsUsersBtn.appendChild(button);
+        });
+    });
+}
 
+document.addEventListener('click',function(e){
+    if(e.target && e.target.className== 'settingsbtn'){
+          console.log('settingsbtn')
+          console.log(e.target.id)
+          // get 'people' with this id out of the firestore
+          getSettings(e.target.id)
+     }
+ });
+
+ const getSettings = (id) => {
+    console.log('settings')
+    console.log(id)
+    db.collection('Users').doc(localStorage.getItem('userId')).collection('People').doc(id).get()
+    .then(function(querySnapshot) {
+        console.log(querySnapshot.data())
+    });
+ } 
 //function to show all data in the dashboard
 const showData = () => {
     console.log('showdata')
@@ -397,11 +520,20 @@ function checkTime(i) {
     return i;
 }
 
-const showHeartRate = () => {
-    // creating the path to the database
+const showHeartRate = (rate) => {
+    // create hartrate object with color based on rate
     let heart = sensorRef.doc('hartSensor');
     let pulse = document.querySelector('.temperature');
+    document.getElementById("heartrate").innerHTML = rate;
+            if(rate > 110){
+                pulse.classList.remove('-outer')
+                pulse.classList.add('red')
+            }else{
+                pulse.classList.remove('red')
+                pulse.classList.add('-outer')
+            }
     // getting the heart rate from the document
+    /*
     db.collection('hartSensor').orderBy("timestamp", "desc").limit(1).get().then(function (doc) {
         // if the document excist and is found
         console.log(doc.docs[0].id)
@@ -418,8 +550,9 @@ const showHeartRate = () => {
                 pulse.classList.add('-outer')
             }
         })
+        */
         /*
-        
+
         if (doc.exists) {
             console.log("Document data:", doc.data());
             console.log("heart rate is:", doc.data().rate);
@@ -431,9 +564,11 @@ const showHeartRate = () => {
             console.log("No such document!");
         }
         */
+       /*
     }).catch(function (error) {
         console.log("Error getting document:", error);
     });
+    */
 }
 
 const showAllHeartRate = () => {
@@ -492,6 +627,7 @@ const getPeople = () => {
             console.log(doc.id, " => ", doc.data());
             usersBtn.appendChild(button);
 
+            getDashboard(doc.data().name)
 
         });
     });
@@ -513,8 +649,60 @@ const getDashboard = (id) => {
     .then(function(querySnapshot){
         console.log(querySnapshot.data())
         makeDashboard(querySnapshot.data()) 
+        getDashboardSensors(id)
+        
     })
 }
+
+// get sensordata of current people
+const getDashboardSensors = (id) => {
+    db.collection('Users').doc(localStorage.getItem('userId')).collection('People').doc(id).collection('Sensors').get()
+        .then(function(querySnapshot){
+            console.log(querySnapshot)
+            // alarm
+            console.log(querySnapshot.docs[0].data())
+            //hartsensor
+            console.log(querySnapshot.docs[1].data())
+            //const heartrate = document.getElementById('heartrate');
+            //showHeartRate(querySnapshot.docs[1].data().rate)
+            //heartrate.innerHTML = querySnapshot.docs[1].data().rate
+            //humid
+            console.log(querySnapshot.docs[2].data())
+            const humidityValue = document.getElementById('humidityValue');
+            humidityValue.innerHTML = querySnapshot.docs[2].data().humid
+            //keypad
+            console.log(querySnapshot.docs[3].data())
+            //soundSensor
+            console.log(querySnapshot.docs[4].data())
+            const sound = document.getElementById('sound');
+            sound.innerHTML = querySnapshot.docs[4].data().db
+            //tempSensor
+            console.log(querySnapshot.docs[5].data())
+            const temperature = document.getElementById('temperature');
+            temperature.innerHTML = querySnapshot.docs[5].data().temp
+            //vibratieSensor
+            console.log(querySnapshot.docs[6].data())
+            //makeDashboard(querySnapshot.data()) 
+            db.collection('Users').doc(localStorage.getItem('userId')).collection('People')
+            .doc(id).collection('Sensors').doc('hartSensor').collection('refreshes').orderBy("timestamp", "desc").limit(1)
+            .get().then(function(doc){
+                console.log('hartbeat')
+                console.log(doc.docs[0].data().rate)
+                showHeartRate(doc.docs[0].data().rate)
+            })
+        })
+}
+
+db.collection('Users').doc(localStorage.getItem('userId')).collection('People')
+            .doc('Indy').collection('Sensors').doc('hartSensor').collection('refreshes').orderBy("timestamp", "desc").limit(1)
+            .onSnapshot(snapshot => {
+                console.log(snapshot.docs[0].data().rate)
+                let changes = snapshot.docChanges();
+                showHeartRate(snapshot.docs[0].data().rate)
+                //console.log(changes.data())
+                console.log(changes)
+                console.log('refreshes')
+            })
 /*
 * Make personal dashboard with people data
 *
@@ -523,10 +711,9 @@ const makeDashboard = (data) => {
     console.log('make dashboard')
     console.log(data)
     const peoplename = document.getElementById('peoplename')
-    const peoplehart = document.getElementById('peoplehart')
+
     // change innerhtml to the data 
     peoplename.innerHTML = data.name
-    peoplehart.innerHTML = data.hartslag
 }
 
 
@@ -558,7 +745,13 @@ createBtn.addEventListener('click', (e) => {
     })
     .then(function(docRef) {
         //console.log("Document written with ID: ", docRef.id);
-        notyf.success('New dashboard succesfully made!');
+        db.collection('Users').doc(userId).collection('People').doc(newname).collection('Sensors').doc('alarmCheck').set({
+            alarm: false ,
+        }).then(function() {
+            notyf.success('New dashboard succesfully made!');
+        })
+
+        
     })
     .catch(function(error) {
         console.error("Error adding document: ", error);
@@ -569,5 +762,5 @@ createBtn.addEventListener('click', (e) => {
 
 
 showData();
-
-showAllHeartRate();
+createSettings();
+//showAllHeartRate();

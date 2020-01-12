@@ -33,8 +33,8 @@
                      <input class="login-form-control" type="password" name="password" id="password">
                  </label>
 
-                 <button id="loginBtn" class="loginButton">Log in</button>
-                 <button id="signupBtn" class="loginButton" href="/signup">Make account</button>
+                 <a id="loginBtn" class="loginButton">Log in</a>
+                 <a id="signupBtn" class="loginButton" href="/signup">Make account</a>
              </form>
          </div>
          <!-- <div class="overlay__form">
@@ -80,6 +80,8 @@
              </header>
              <section class="cameraSection">
                  <div class="cameraContainer">
+                    <iframe src="http://210.113.134.150/mjpg/video.mjpg#.Xht59c4gzHY.link" width='100%' height='100%' frameborde='0'></iframe>
+
                  </div>
                  <div class="cameraOverlayContainer left">
                      <h3 class="humidity"><i class="fas fa-bell"></i></h3>
@@ -90,11 +92,11 @@
                  </div>
                  <div class="cameraOverlayContainer right">
                     <h3 class="humidity"><span id="peoplename"></span><i class="fas fa-user"></i></h3>
-                    <h3 class="humidity"><span id="peoplehart"></span><i class="fas fa-heart"></i></h3>
                      <h3 class="humidity"><span id="date"></span><i class="fas fa-calendar-alt"></i></h3>
                      <h3 class="humidity"><span id="time"></span> PM <i class="fas fa-clock"></i></h3>
-                     <h3 class="humidity"><span id="humidityValue">84</span> % <i class="fas fa-tint"></i> </h3>
-                     <h3 class="humidity"><span id="temperature">23</span> °C <i class="fas fa-thermometer-half"></i>
+                     <h3 class="humidity"><span id="humidityValue"></span> % <i class="fas fa-tint"></i> </h3>
+                     <h3 class="humidity"><span id="temperature"></span> °C <i class="fas fa-thermometer-half"></i>
+                        <h3 class="humidity"><span id="sound"></span> db <i class="fas fa-volume-up"></i>
                      </h3>
                      <main class="tempContainer">
                          <section class="temperature -outer" id="tempOuterRing">
@@ -111,17 +113,27 @@
          <!-- CAMERA-->
          <section id="cameraOverlay" class="informationContainer">
              <p>Camera...</p>
+             <iframe src="http://210.113.134.150/mjpg/video.mjpg#.Xht59c4gzHY.link" width='100%' height='80%' frameborde='0'></iframe>
              <canvas id="myChart" height="450" width="600"></canvas>
          </section>
 
-         <!--CHART-->
+         <!--CHART              <div class="ct-chart ct-perfect-fourth"></div>
+-->
          <section id="chartOverlay" class="informationContainer">
-             <div class="ct-chart ct-perfect-fourth"></div>
+            <figure class="highcharts-figure">
+                <div id="container"></div>
+                <p class="highcharts-description">
+                    Chart showing data updating every second, with old data being removed.
+                </p>
+            </figure>
          </section>
 
           <!-- Settings-->
           <section id="settingsOverlay" class="informationContainer">
-            <p>Settings...</p>>
+            <h3>Settings</h3>
+            <div class="settingsUsersBtn">
+
+            </div>
         </section>
         
          <!--NEW DASHBOARD-->
@@ -156,9 +168,15 @@
      <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-analytics.js"></script>
      <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-auth.js"></script>
      <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-firestore.js"></script>
-     <!-- Charts -->
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
+     <!-- Charts
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
      <script src="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
+     <script src="./assets/js/Chart.js"></script>
+    -->
+     <script src="https://code.highcharts.com/highcharts.js"></script>
+     <script src="https://code.highcharts.com/modules/exporting.js"></script>
+     <script src="https://code.highcharts.com/modules/export-data.js"></script>
+     <script src="https://code.highcharts.com/modules/accessibility.js"></script>
      
      <!-- Add own scripts -->
      <script src="assets/js/firebase-details.js"></script>
