@@ -12,6 +12,8 @@ const chartBtn = document.querySelector('#chartBtn');
 const newDashboardOverlay = document.querySelector('#newDashboardOverlay');
 const newDashboardBtn = document.querySelector('#newDashboardBtn');
 const createBtn = document.querySelector('#createBtn');
+const settingsProfileBtn = document.querySelector('.button_left');
+
 
 const usersBtn = document.querySelector('.usersBtn')
 const settingsUsersBtn = document.querySelector('.settingsUsersBtn')
@@ -650,6 +652,8 @@ const getDashboard = (id) => {
         console.log(querySnapshot.data())
         makeDashboard(querySnapshot.data()) 
         getDashboardSensors(id)
+        settings(querySnapshot.data())
+        
         
     })
 }
@@ -716,6 +720,34 @@ const makeDashboard = (data) => {
     peoplename.innerHTML = data.name
 }
 
+const settings = (data) => {
+    console.log(data)
+    document.getElementById('userSettings').innerHTML = data.name;
+    document.querySelector('.naamSetting').value = data.name;
+    document.querySelector('.geslachtSetting').value = data.gender;
+    document.querySelector('.leeftijdSetting').value = data.leeftijd;
+
+}
+
+
+settingsProfileBtn.addEventListener('click', (e) => {
+    // make new 'people' in database
+    e.preventDefault()
+    const name = document.querySelector('.naamSetting').value
+    const newgender = document.querySelector('.geslachtSetting').value
+    const leeftijd =  document.querySelector('.leeftijdSetting').value
+
+
+   db.collection('Users').doc(localStorage.getItem('userId')).collection('People').doc(name).update({
+        name: name,
+        gender: newgender,
+        leeftijd: leeftijd,
+    })
+    .catch(function(error) {
+        notyf.error("Error adding data: ", error);
+    });
+    notyf.success('De data is aangepast')
+});
 
 newDashboardBtn.addEventListener('click', (e) => {
     // open new dashboard screen

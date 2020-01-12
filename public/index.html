@@ -130,10 +130,43 @@
 
           <!-- Settings-->
           <section id="settingsOverlay" class="informationContainer">
-            <h3>Settings</h3>
-            <div class="settingsUsersBtn">
-
-            </div>
+            <div class="wrapper">
+                <div class="left">
+                
+                </div>
+                <div class="right">
+                  <h2>Profile Settings from <span id="userSettings"></span></h2>
+                  <img class="avatar" src="http://www.pngall.com/wp-content/uploads/2/Shrek-PNG-Transparent-HD-Photo.png" alt="">
+                  <div class="form" >
+                    <form
+                          action="index.html"
+                          method="post">
+                      <div class="field">
+                        <label for="">Naam</label>
+                        <input class="naamSetting"
+                               type="text"
+                               name="naam"
+                               value="" />
+                      </div>
+                      <div class="field">
+                        <label for="">Geslacht</label>
+                        <input class="geslachtSetting"
+                               type="text"
+                               name="geslacht" />
+                      </div>
+                      <div class="field">
+                        <label for="">Leeftijd</label>
+                        <input class="leeftijdSetting"
+                               type="text"
+                               name="leeftijd" />
+                      </div>
+                    </form>
+                  </div>
+                  <div class="bottom">
+                    <a href="#"><button class="button_left" type="submit" name="button">Save Changes</button></a>
+                  </div>
+                </div>
+              </div>
         </section>
         
          <!--NEW DASHBOARD-->
