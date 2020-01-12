@@ -1,7 +1,12 @@
-import { Router } from 'express';
-import path from 'path';
+'use strict';
 
-const routes = Router();
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _express = require('express');
+
+const routes = (0, _express.Router)();
 
 /**
  * GET home page
@@ -11,11 +16,7 @@ routes.get('/', (req, res) => {
 });
 
 routes.get('/signup', (req, res) => {
-  res.sendFile(path.join(__dirname ,'../public/signup.html'));
-});
-
-routes.get('/walkthrough', (req, res) => {
-  res.sendFile(path.join(__dirname ,'../public/walkthrough.html'));
+  res.render('signup');
 });
 /**
  * GET /list
@@ -41,4 +42,5 @@ routes.get('/list', (req, res, next) => {
   res.render('index', { title });
 });
 
-export default routes;
+exports.default = routes;
+//# sourceMappingURL=routes.js.map

@@ -8,6 +8,9 @@
      <title>Slaapwandel</title>
      <link rel="stylesheet" href="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
      <link rel="stylesheet" href="./assets/css/app.css">
+     <link rel="stylesheet" href="./assets/css/notyf.min.css">
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
      <script src="https://kit.fontawesome.com/bd8617b409.js" crossorigin="anonymous"></script>
  </head>
 
@@ -31,6 +34,7 @@
                  </label>
 
                  <button id="loginBtn" class="loginButton">Log in</button>
+                 <button id="signupBtn" class="loginButton" href="/signup">Make account</button>
              </form>
          </div>
          <!-- <div class="overlay__form">
@@ -38,6 +42,7 @@
              <form class="form" method="post">
 
                  <div class="form__group">
+
                      <label for="email">Email</label>
                      <input type="email" name="email" id="email" autofocus>
                  </div>
@@ -51,8 +56,6 @@
              </form>
          </div>-->
      </section>
-
-
      <main class="container">
          <section class="navContainer">
              <div class="nav">
@@ -60,6 +63,7 @@
                      <li id="mainBtn"><i class="fas fa-tachometer-alt"></i><span>dashboard</span></li>
                      <li id="cameraBtn"><i class="fas fa-video"></i> <span>camera</span></li>
                      <li id="chartBtn"><i class="fas fa-chart-bar"></i> <span>charts</span></li>
+                     <li id="settingsBtn"><i class="fas fa-cog"></i> <span>settings</span></li>
                      <li id="signoutBtn"><i class="fas fa-sign-out-alt"></i><span>signout</span></li>
                  </ul>
              </div>
@@ -68,11 +72,10 @@
          <section id="mainOverlay" class="informationContainer">
              <header class="informationHeader">
                  <div class="usersBtn">
-                     <button><i class="fas fa-user-alt"></i> Milo's</button>
-                     <button><i class="fas fa-user-alt"></i> Jerry's</button>
+
                  </div>
                  <div class="crudBtn">
-                     <button><i class="fas fa-plus-circle"></i></button>
+                     <button id="newDashboardBtn"><i class="fas fa-plus-circle"></i></button>
                  </div>
              </header>
              <section class="cameraSection">
@@ -93,7 +96,10 @@
                      <h3 class="humidity"><span id="humidityValue">84</span> % <i class="fas fa-tint"></i> </h3>
                      <h3 class="humidity"><span id="temperature">23</span> °C <i class="fas fa-thermometer-half"></i>
                      </h3>
+<<<<<<< HEAD
                      
+=======
+>>>>>>> 94881081b38eff73c7d445336c3f489df85a618f
                      <main class="tempContainer">
                          <section class="temperature -outer" id="tempOuterRing">
                              <div class="temperature">
@@ -117,6 +123,38 @@
              <div class="ct-chart ct-perfect-fourth"></div>
          </section>
 
+          <!-- Settings-->
+          <section id="settingsOverlay" class="informationContainer">
+            <p>Settings...</p>>
+        </section>
+
+        <!-- The Modal -->
+        <div id="myModal" class="modal">
+            <!-- Modal content -->
+            <div class="modal-content">
+            <span class="close">&times;</span>
+            <p>Succesfully Created!</p>
+            </div>
+        
+        </div>
+         <!--NEW DASHBOARD-->
+         <section id="newDashboardOverlay" class="informationContainer">
+            <h1>Create new dashboard</h1>
+                <form class="newDashboardForm" method="post">
+                    <label class="login-form-group" for="name">Naam
+                        <input class="login-form-control" type="text" name="name" id="name" autofocus>
+                    </label>
+                    <br>
+                    <label>Geslacht:</label>
+                    <br>
+                    <input type="radio" name="gender" id="gender" value="male" checked> Male<br>
+                    <input type="radio" name="gender" id="gender" value="female"> Female<br>
+                    <input type="radio" name="gender" id="gender" value="other"> Other
+                    <br>
+                    <button id="createBtn" class="createBtn">Create</button>
+                </form>
+        </section>
+        
      </main>
 
 
@@ -134,6 +172,8 @@
      
      <!-- Add own scripts -->
      <script src="assets/js/firebase-details.js"></script>
+     <script src="assets/js/notyf.min.js"></script>
+
      <script src="assets/js/app.js"></script>
  </body>
 
