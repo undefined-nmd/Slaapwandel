@@ -503,7 +503,7 @@ ul {
     font-size: 20px;
 }
 
-#chartOverlay, #cameraOverlay {
+#chartOverlay, #cameraOverlay, #settingsOverlay, #newDashboardOverlay {
     display: none;
 }
 
