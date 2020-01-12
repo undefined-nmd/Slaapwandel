@@ -478,6 +478,10 @@ document.addEventListener('click',function(e){
  const getSettings = (id) => {
     console.log('settings')
     console.log(id)
+    db.collection('Users').doc(localStorage.getItem('userId')).collection('People').doc(id).get()
+    .then(function(querySnapshot) {
+        console.log(querySnapshot.data())
+    });
  } 
 //function to show all data in the dashboard
 const showData = () => {
@@ -623,6 +627,7 @@ const getPeople = () => {
             console.log(doc.id, " => ", doc.data());
             usersBtn.appendChild(button);
 
+            getDashboard(doc.data().name)
 
         });
     });
