@@ -674,6 +674,8 @@ const getDashboardSensors = (id) => {
             console.log(querySnapshot.docs[3].data())
             //soundSensor
             console.log(querySnapshot.docs[4].data())
+            const sound = document.getElementById('sound');
+            sound.innerHTML = querySnapshot.docs[4].data().db
             //tempSensor
             console.log(querySnapshot.docs[5].data())
             const temperature = document.getElementById('temperature');
