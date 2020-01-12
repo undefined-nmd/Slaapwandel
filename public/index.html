@@ -80,8 +80,6 @@
              </header>
              <section class="cameraSection">
                  <div class="cameraContainer">
-
-
                  </div>
                  <div class="cameraOverlayContainer left">
                      <h3 class="humidity"><i class="fas fa-bell"></i></h3>
@@ -91,6 +89,8 @@
 
                  </div>
                  <div class="cameraOverlayContainer right">
+                    <h3 class="humidity"><span id="peoplename"></span><i class="fas fa-user"></i></h3>
+                    <h3 class="humidity"><span id="peoplehart"></span><i class="fas fa-heart"></i></h3>
                      <h3 class="humidity"><span id="date"></span><i class="fas fa-calendar-alt"></i></h3>
                      <h3 class="humidity"><span id="time"></span> PM <i class="fas fa-clock"></i></h3>
                      <h3 class="humidity"><span id="humidityValue">84</span> % <i class="fas fa-tint"></i> </h3>
@@ -127,17 +127,20 @@
          <section id="newDashboardOverlay" class="informationContainer">
             <h1>Create new dashboard</h1>
                 <form class="newDashboardForm" method="post">
-                    <label class="login-form-group" for="name">Naam
-                        <input class="login-form-control" type="text" name="name" id="name" autofocus>
+                    <label class="login-form-group" for="newname">Naam
+                        <input class="login-form-control" type="text" name="newname" id="newname" autofocus>
                     </label>
                     <br>
+                    <label class="login-form-group" for="newhartslag">Hartslag  in  rust
+                        <input class="login-form-control" type="number" name="newhartslag" id="newhartslag" autofocus>
+                    </label>
                     <label>Geslacht:</label>
                     <br>
-                    <input type="radio" name="gender" id="gender" value="male" checked> Male<br>
-                    <input type="radio" name="gender" id="gender" value="female"> Female<br>
-                    <input type="radio" name="gender" id="gender" value="other"> Other
+                    <input type="radio" name="newgender" id="newgender" value="male" checked> Male<br>
+                    <input type="radio" name="newgender" id="newgender" value="female"> Female<br>
+                    <input type="radio" name="newgender" id="newgender" value="other"> Other
                     <br>
-                    <button id="createBtn" class="createBtn">Create</button>
+                    <button id="createBtn" class="loginButton">Create</button>
                 </form>
         </section>
         
