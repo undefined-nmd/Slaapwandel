@@ -668,18 +668,36 @@ const getDashboardSensors = (id) => {
             //heartrate.innerHTML = querySnapshot.docs[1].data().rate
             //humid
             console.log(querySnapshot.docs[2].data())
-            const humidityValue = document.getElementById('humidityValue');
-            humidityValue.innerHTML = querySnapshot.docs[2].data().humid
+            if(querySnapshot.docs[2].data()){
+                const humidityValue = document.getElementById('humidityValue');
+                humidityValue.innerHTML = querySnapshot.docs[2].data().humid
+            }else{
+                const humidityValue = document.getElementById('humidityValue');
+                humidityValue.innerHTML = 'no value'
+            }
+            
             //keypad
             console.log(querySnapshot.docs[3].data())
             //soundSensor
             console.log(querySnapshot.docs[4].data())
-            const sound = document.getElementById('sound');
-            sound.innerHTML = querySnapshot.docs[4].data().db
+
+            if(querySnapshot.docs[4].data()){
+                const sound = document.getElementById('sound');
+                sound.innerHTML = querySnapshot.docs[4].data().db
+            }else{
+                const sound = document.getElementById('sound');
+                sound.innerHTML = 'no value'
+            }
             //tempSensor
             console.log(querySnapshot.docs[5].data())
-            const temperature = document.getElementById('temperature');
-            temperature.innerHTML = querySnapshot.docs[5].data().temp
+            if(querySnapshot.docs[5].data()){
+                const temperature = document.getElementById('temperature');
+                temperature.innerHTML = querySnapshot.docs[5].data().temp
+            }else{
+                const temperature = document.getElementById('temperature');
+                temperature.innerHTML = 'no value'
+            }
+            
             //vibratieSensor
             console.log(querySnapshot.docs[6].data())
             //makeDashboard(querySnapshot.data()) 
