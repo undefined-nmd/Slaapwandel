@@ -6,6 +6,12 @@ Object.defineProperty(exports, "__esModule", {
 
 var _express = require('express');
 
+var _path = require('path');
+
+var _path2 = _interopRequireDefault(_path);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 const routes = (0, _express.Router)();
 
 /**
@@ -16,7 +22,11 @@ routes.get('/', (req, res) => {
 });
 
 routes.get('/signup', (req, res) => {
-  res.render('signup');
+  res.sendFile(_path2.default.join(__dirname, '../public/signup.html'));
+});
+
+routes.get('/walkthrough', (req, res) => {
+  res.sendFile(_path2.default.join(__dirname, '../public/walkthrough.html'));
 });
 /**
  * GET /list

@@ -25,7 +25,7 @@ const makeAccountBtn = document.querySelector('#makeAccountBtn')
 
 // settings
 const settingsBtn = document.querySelector('#settingsBtn')
-const settingsOverlay = document.querySelector('settingsOverlay')
+const settingsOverlay = document.querySelector('#settingsOverlay')
 const mainOverlay = document.querySelector('#mainOverlay');
 const mainBtn = document.querySelector('#mainBtn');
 const cameraOverlay = document.querySelector('#cameraOverlay');
@@ -247,6 +247,7 @@ firebase.auth().onAuthStateChanged(user => {
 signoutBtn.addEventListener('click', (e) => {
     e.preventDefault()
     firebase.auth().signOut();
+    
 })
 
 
@@ -259,6 +260,7 @@ loginBtn.addEventListener('click', (e) => {
     firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
         .then(() => {
             firebase.auth().signInWithEmailAndPassword(email, pass)
+            notyf.success('Welcome back!');
         })
         .catch(err => console.error(err))
 })
@@ -274,6 +276,7 @@ chartBtn.addEventListener('click', (e) => {
     mainOverlay.style.display = "none";
     cameraOverlay.style.display = "none";
     chartOverlay.style.display = "block";
+    newDashboardOverlay.style.display ="none"
     mainBtn.color = "#ffff";
     cameraBtn.style.color = "#ffff";
     chartBtn.style.color = "#4198ad";
@@ -286,6 +289,7 @@ mainBtn.addEventListener('click', (e) => {
     chartOverlay.style.display = "none";
     cameraOverlay.style.display = "none";
     mainOverlay.style.display = "block";
+    newDashboardOverlay.style.display ="none"
     chartBtn.style.color = "#ffff";
     cameraBtn.style.color = "#ffff";
     mainBtn.style.color = "#4198ad";
@@ -298,6 +302,7 @@ cameraBtn.addEventListener('click', (e) => {
     chartOverlay.style.display = "none";
     mainOverlay.style.display = "none";
     cameraOverlay.style.display = "block";
+    newDashboardOverlay.style.display ="none"
     chartBtn.style.color = "#ffff";
     mainBtn.style.color = "#ffff";
     cameraBtn.style.color = "#4198ad";
@@ -311,6 +316,7 @@ chartOverlay.style.display = "none";
 mainOverlay.style.display = "none";
 cameraOverlay.style.display = "none";
 settingsOverlay.style.display = "block";
+newDashboardOverlay.style.display ="none"
 chartBtn.style.color = "#ffff";
 mainBtn.style.color = "#ffff";
 cameraBtn.style.color = "#ffff";
@@ -480,6 +486,7 @@ newDashboardBtn.addEventListener('click', (e) => {
     chartOverlay.style.display = "none";
     cameraOverlay.style.display = "none";
     mainOverlay.style.display = "none";
+    settingsOverlay.style.display ="none";
     newDashboardOverlay.style.display ="block"
 })
 
@@ -497,7 +504,7 @@ createBtn.addEventListener('click', (e) => {
     })
     .then(function(docRef) {
         console.log("Document written with ID: ", docRef.id);
-        modal.style.display = "block";
+        notyf.success('New dashboard succesfully made!');
     })
     .catch(function(error) {
         console.error("Error adding document: ", error);
