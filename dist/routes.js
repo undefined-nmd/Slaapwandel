@@ -15,6 +15,9 @@ routes.get('/', (req, res) => {
   res.render('index', { title: 'Slaapwandel Project' });
 });
 
+routes.get('/signup', (req, res) => {
+  res.render('signup');
+});
 /**
  * GET /list
  *
