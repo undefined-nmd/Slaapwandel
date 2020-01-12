@@ -339,7 +339,7 @@ const db = firebase.firestore()
 
  const showHeartRate = () => {
      // creating the path to the database
-     let heart = sensorRef.doc('hartSensor');
+     let heart = rateRef.doc('heart.get()');
      // getting the heart rate from the document
      heart.get().then(function (doc) {
          // if the document excist and is found
@@ -390,3 +390,87 @@ const db = firebase.firestore()
  showData();
 
  showAllHeartRate();
+//make the heartrate simulator
+ function getActualData() {
+    var actualData = []
+    for (var m = 0; m < 20; m++)
+        actualData.push(45 + parseInt(Math.random() * 35))
+        return actualData;
+}
+
+
+var ANIMATIONSTEPS = 200;
+
+var myLineChart;
+var labels;
+var animationStep;
+setInterval(function () {
+    if (myLineChart === undefined) {
+        var actualData = getActualData();
+        
+        // if we have only a few data points interpolate to fill out enough points to make the animation smooth
+        var interpolationSteps = Math.ceil(ANIMATIONSTEPS / actualData.length);
+        labels = []
+        var data = []
+        var blankData = []
+        for (var i = 0; i < (actualData.length - 1); i++) {
+            labels.push('')
+            data.push(actualData[i])
+            blankData.push(null)
+            
+            // push interpolation
+            var difference = actualData[i + 1] - actualData[i];
+            var interpolationStep = 1 / interpolationSteps;
+            for (var j = 1; j < interpolationSteps; j++) {
+                labels.push('')
+                data.push(actualData[i] + difference * Chart.helpers.easingEffects["linear"](j * interpolationStep));
+                blankData.push(null)
+            }
+        }
+        labels.push('')
+        data.push(actualData[i])
+        blankData.push(null)
+        
+        var data = {
+            labels: labels,
+            datasets: [
+                {
+                    strokeColor: "rgba(243, 118, 27, 1)",
+                    data: blankData
+                },
+                {
+                    strokeColor: "transparent",
+                    data: data
+                }
+            ]
+        };
+        
+        var ctx = document.getElementById("myChart").getContext("2d");
+        myLineChart = new Chart(ctx).Line(data, {
+            animation: false,
+            datasetFill: false,
+            pointDot: false,
+            datasetStrokeWidth: 5,
+            showTooltips: false,
+            scaleOverride: true,
+            scaleSteps: 12,
+            scaleStepWidth: 5,
+            scaleStartValue: 30,
+            scaleShowVerticalLines: false,
+            scaleShowLabels: false,
+        });
+        
+        animationStep = 0;
+    }
+    
+    // the actual animation
+    myLineChart.datasets[0].points[animationStep].value = myLineChart.datasets[1].points[animationStep].value
+    myLineChart.update();
+    animationStep++;
+    
+    // start new cycle
+    if (animationStep >= labels.length) {
+        myLineChart.destroy();
+        myLineChart = undefined;
+    }
+}, 10)
