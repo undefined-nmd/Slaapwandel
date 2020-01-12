@@ -397,11 +397,11 @@ const showHeartRate = () => {
             console.log(d.data())
             document.getElementById("heartrate").innerHTML = d.data().rate;
             if(d.data().rate > 110){
-                pulse.classList.remove('.-outer')
-                pulse.classList.add('.red')
+                pulse.classList.remove('-outer')
+                pulse.classList.add('red')
             }else{
-                pulse.classList.remove('.red')
-                pulse.classList.add('.-outer')
+                pulse.classList.remove('red')
+                pulse.classList.add('-outer')
             }
         })
         /*

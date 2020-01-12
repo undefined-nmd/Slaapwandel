@@ -699,6 +699,10 @@ textarea.login-form-control {
         width: 175px;
         height: 175px;
     }
+    .temperature.red {
+        width: 175px;
+        height: 175px;
+    }
     .loginTitle {
         font-size: 50px;
     }
@@ -740,6 +744,10 @@ textarea.login-form-control {
         font-size: 45px;
     }
     .temperature.-outer {
+        width: 200px;
+        height: 200px;
+    }
+    .temperature.red {
         width: 200px;
         height: 200px;
     }
