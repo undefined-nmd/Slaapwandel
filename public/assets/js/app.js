@@ -343,7 +343,6 @@ cameraBtn.addEventListener("click", navButton(cameraOverlay, chartOverlay, mainO
 /**
  * Initialize app
  */
-<<<<<<< HEAD
  chartBtn.addEventListener('click', (e) => {
      e.preventDefault()
 
@@ -579,7 +578,6 @@ setInterval(function () {
         myLineChart = undefined;
     }
 }, 10)
-=======
 /* const initApp = () => {
     // initialize controls
     // Initialize chart
@@ -806,4 +804,3 @@ createBtn.addEventListener('click', (e) => {
 showData();
 
 showAllHeartRate();
->>>>>>> 94881081b38eff73c7d445336c3f489df85a618f
