@@ -278,7 +278,7 @@ Highcharts.chart('container', {
         name: 'Random data',
         data: (function () {
             // generate an array of random data
-            /*
+            
             var data = [],
                 time = (new Date()).getTime(),
                 i;
@@ -289,8 +289,8 @@ Highcharts.chart('container', {
                     y: Math.random()
                 });
             }
-            */
-
+            
+/*
            // generate an array and watch changes in heartrate
            var data = [],
                 time = (new Date()).getTime()
@@ -314,6 +314,7 @@ Highcharts.chart('container', {
                     //console.log(changes.data())
 
                 })
+                */
         return data;
         }())
     }]
