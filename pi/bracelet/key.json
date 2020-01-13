@@ -1,0 +1,13 @@
+{
+    "type": "service_account",
+    "project_id": "slaapwandelproject",
+    "private_key_id": "6244ff6ddca92f0625ad61177094a362292afcfe",
+    "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCcIhqnsoTXMLkY\nLWbRdhTWX/mhvDm1nu0wSGUs6+00EUcoagG622CFk9ItZk2xh/YuHU3x1oRw45Jh\ngrcYIefD21LfqXEEz2/kcy4NU6lmIjeX/aAsgXdpmmWKuceFEpLxZiTFTS+/GF3c\nlEMPdRwEeieGJE9ls1U/FSorpG0CrxEBjq1G1Zt9UlLLENuNz+DihD1Ol1urX0p0\n++K5TlYF58q1I3pOr1uDvzcjpciV3m6E9qTW87PL0Ztb2++aHU7g1kJeyb0dtQER\nO1nOsGzPlo7IE8+twX2i/dKIFBscEPcDp98n85Kx2+C0QxdKBv07XLsnMAunTEvt\nIOBX5eNNAgMBAAECggEAIe3/YOYYnDMIZkqnh2ljydp9gzpGSEPLQ6zX39U9bQ08\nK3ot+g9mgGDJUfhjdesYApl3sNBvY6Dw1KP1ahckKJnm/pfx6ZuyszCcl2TQ8VMK\nRctmHYXdD2PwIR+STkblC/SolP/bGmoPK7pEgH1wo0BwimQlpPI92kGdMnK/Bc/y\nuvJNNhsznR0wcBjomI0KvpegGM/M9nRMNHcJA3hPIu0BxHAEa1uVp896QtFrOjJd\nl2xAyGbd9/SKdz/6eXG9U1M5515QK0YQxW1C5gRs/R1lbBFQP1YT+klyj84C/6dU\nmKXEpwKJAlX5hcKi7Zwzooxk9ctn0nYDgMLrfzLEgQKBgQDJHm3x0MdVObPijSkq\noLO18JBOeHAhFU888AQUYWSvEeXGkM5VupTr9Uts5JL9G0YDd5oTHk/Ni11KtNUA\nReFY0V/Z55u8y6knI9xm2Y4afoPc1SZhzlu9Y/PAi1lrM+oyrnCD7jYXc+hOkde6\nh+ctlWQ4vDFZIUeeqwYQtDctHQKBgQDGvRwzIaNBnvQUVJnrNfy5Yrisydw0isBy\nmNysU1v2WDKuFmx+t2f2MzoNk09eqkW8qZpmSCixLL6du6eHTNMd+1ITk68kWY49\nu8uViVUHZ7bw6DN9dpjrjzfa9hF0vTihLJYPrjuX/IE3ZsHq5nMMiL4r4gTQ1O51\n2GdzrVkn8QKBgETAxk0YVkxoQXp9T0lnTogwCOUKfyqQIlpuorZk5QqET8ylzCO6\neRaA8Jv1N9qW7ERbKqzGe/mEXwwe7YH+YZ7/VIkliDPuW5EpzTrLvKyJ+4IOy+Q7\nq1j/RmDYQmVHhhR1VbmEQbGayhux99Goi/slSvGqRCR4IAe554TmVsZxAoGAVbTi\nf26HQFpzen0Nr/ElXzGi4Olg7MvVuNYRfMOqSi+5E3iaK3+e9v8ajxYzSWj3ECi4\nbFm8KsRYJB/0XJYWCb0DpWuwQWXZwOfHIWMLZ1kj/Pq2kenegt/Nv8EUwBqGXIOk\n53hFPQNpGmJXSJ0/im1CThx35TOe7vV3j9x3MZECgYAqog9ZTx6aBVOGOfXO7MYr\no6nxDy4LHP9rVueIzE6oiWiRgSPoQ1+aUnI5Oh/tE0tIs6USQvk4h1+zng7CKF3r\nNjVit2dOzE0UoGCGqrukfUokp1e2ACbRd2zcwCHzg1dZcpwpDopSBmrVu5pXiY61\n8dj2SNS7u3d3/RIfevfqPw==\n-----END PRIVATE KEY-----\n",
+    "client_email": "firebase-adminsdk-lon4z@slaapwandelproject.iam.gserviceaccount.com",
+    "client_id": "117061562041690896125",
+    "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+    "token_uri": "https://oauth2.googleapis.com/token",
+    "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+    "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-lon4z%40slaapwandelproject.iam.gserviceaccount.com"
+  }
+  
