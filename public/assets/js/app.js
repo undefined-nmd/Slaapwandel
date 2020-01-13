@@ -878,3 +878,44 @@ createBtn.addEventListener('click', (e) => {
 showData();
 createSettings();
 //showAllHeartRate();
+
+
+// chart
+let hartslagChart;
+
+const getDataChart = () => {
+
+    db.collection('Users').doc(localStorage.getItem('userId')).collection('People')
+    .doc('Indy').collection('Sensors').doc('hartSensor').collection('refreshes').orderBy("timestamp", "desc").limit(1)
+    .limit(1).get().then(function(data){
+        console.log(data.docs[0].data().rate)
+        // get data from db and give it to hartslag
+        hartslagChart = data.docs[0].data().rate
+        
+    })
+
+    return hartslagChart;
+}
+
+var trace1 = {
+    y: [getDataChart()],
+    type: 'line'
+  };
+  var cnt = 0
+  setInterval(function(){
+    Plotly.extendTraces(chart,{y:[[getDataChart()]]}, [0])
+    cnt ++;
+
+    if(cnt > 20){
+        Plotly.relayout(chart, {
+            xaxis : {
+                range: [cnt-20,cnt]
+            }
+        })
+    }
+},2000)
+
+  var data = [trace1];
+// make chart
+
+Plotly.newPlot('chart', data);
