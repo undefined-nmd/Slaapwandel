@@ -19,15 +19,15 @@ class Alarm():
 
             if val == 'True':
                 print('alarm on')
-                # Led(0)
+                Led(0)
                 print('alarm off')
-                # Led(1)
+                Led(1)
                 print('alarm off')
-                # Buzz(1)
+                Buzz(1)
                 Heartbeat(db, 100, 113) # hier de hogere waarden
             else:   
-                # Led(1)
-                # Buzz(0)
+                Led(1)
+                Buzz(0)
                 print('he')
                 Heartbeat(db, 61, 99) # hier de lagere waarden
         
