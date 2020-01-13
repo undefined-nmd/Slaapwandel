@@ -56,3 +56,8 @@ will run `build` (via the `prestart` hook) and start the compiled application fr
 The last command is generally what most hosting providers use to start your application when deployed, so it should take care of everything.
 
 You can find small guides for Heroku, App Engine and AWS in [the deployment](DEPLOYMENT.md) document.
+
+### Login 
+
+email: quinten@test.test
+pass: testtest
