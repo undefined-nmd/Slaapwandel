@@ -113,8 +113,10 @@
          <!-- CAMERA-->
          <section id="cameraOverlay" class="informationContainer">
              <p>Camera</p>
-             <iframe src="http://192.168.0.252:8000/stream.mjpg" width='100%' height='80%' frameborde='0'></iframe>
-             <canvas id="myChart" height="450" width="600"></canvas>
+             <div class="cameraContainer">
+                <iframe src="http://192.168.0.252:8000/stream.mjpg" width='100%' height='100%' frameborde='0'></iframe>
+
+             </div>
          </section>
 
          <!--CHART              <div class="ct-chart ct-perfect-fourth"></div>
@@ -221,6 +223,8 @@
      <script src="assets/js/notyf.min.js"></script>
 
      <script src="assets/js/app.js"></script>
+     <script src="assets/js/request.js"></script>
+
  </body>
 
  </html> 
