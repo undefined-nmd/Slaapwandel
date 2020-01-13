@@ -44,6 +44,8 @@ firebase.auth().onAuthStateChanged(user => {
         //initApp()
     } else {
         overlay.classList.remove('-hidden')
+        notyf.success('Goodbye!');
+
     }
 })
 
@@ -68,6 +70,7 @@ loginBtn.addEventListener('click', (e) => {
 
                 localStorage.setItem('email', email)
                 localStorage.setItem('userId', firebase.auth().currentUser.uid)
+                location.reload();
                 notyf.success('Welcome back!');
             }).catch(error => {
                 notyf.error('ohno: ' + error)
