@@ -32,6 +32,7 @@ html, body {
 
 .overlay__form {
     padding: 20px;
+    
     box-shadow: 0px 0px 10px #00000005, 0px 15px 40px #00000020;
 }
 
@@ -221,6 +222,7 @@ ul {
 
 .humidity {
     margin: 0;
+    
 }
 
 .text-muted {
@@ -292,8 +294,17 @@ ul {
 
 .cameraOverlayContainer h3 {
     text-align: right;
-    color: rgba(223, 229, 236, 0.20);
+    color: rgb(255, 255, 255);
+    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+    
+
+	
     margin-top: 10px;
+}
+.cameraOverlayContainer.right{
+    /*background-color: #78858b79;
+    border-radius: 20px;*/
+    padding: 0 20px 0 20px;
 }
 
 .cameraOverlayContainer h3 i:hover {
@@ -506,7 +517,9 @@ ul {
 #chartOverlay, #cameraOverlay, #settingsOverlay, #newDashboardOverlay {
     display: none;
 }
-
+#newDashboardOverlay {
+    padding-left: 20px;
+}
 /*
 * Login form
 */

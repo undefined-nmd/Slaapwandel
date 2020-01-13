@@ -35,6 +35,50 @@ const signoutBtn = document.querySelector('#signoutBtn');
 let temperatureChart
 
 
+firebase.auth().onAuthStateChanged(user => {
+    if (user) {
+        if (!overlay.classList.contains('-hidden')) {
+            overlay.classList.add('-hidden')
+            notyf.success('Welcome back!');
+        }
+        //initApp()
+    } else {
+        overlay.classList.remove('-hidden')
+    }
+})
+
+signoutBtn.addEventListener('click', (e) => {
+    e.preventDefault()
+    firebase.auth().signOut();
+
+    localStorage.removeItem('email')
+    localStorage.removeItem('userId')
+    
+})
+
+loginBtn.addEventListener('click', (e) => {
+    e.preventDefault()
+    console.log('clicked')
+    const email = document.querySelector('#email').value
+    const pass = document.querySelector('#password').value
+
+    firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
+        .then(() => {
+            firebase.auth().signInWithEmailAndPassword(email, pass).then(()=>{
+
+                localStorage.setItem('email', email)
+                localStorage.setItem('userId', firebase.auth().currentUser.uid)
+                notyf.success('Welcome back!');
+            }).catch(error => {
+                notyf.error('ohno: ' + error)
+            })
+            
+        })
+        .catch(error => {
+            notyf.error('ohno: ' + error)
+        })
+})
+
 const pushState = (name) => {
     // Get the current state
     const elementButton = document.querySelector(`#${name}Switch`)
@@ -346,48 +390,6 @@ const initChart = () => {
 }
 */
 
-firebase.auth().onAuthStateChanged(user => {
-    if (user) {
-        if (!overlay.classList.contains('-hidden')) {
-            overlay.classList.add('-hidden')
-            notyf.success('Welcome back!');
-        }
-        //initApp()
-    } else {
-        overlay.classList.remove('-hidden')
-    }
-})
-
-signoutBtn.addEventListener('click', (e) => {
-    e.preventDefault()
-    firebase.auth().signOut();
-
-    localStorage.removeItem('email')
-    localStorage.removeItem('userId')
-    
-})
-
-loginBtn.addEventListener('click', (e) => {
-    e.preventDefault()
-    const email = document.querySelector('#email').value
-    const pass = document.querySelector('#password').value
-
-    firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
-        .then(() => {
-            firebase.auth().signInWithEmailAndPassword(email, pass).then(()=>{
-
-                localStorage.setItem('email', email)
-                localStorage.setItem('userId', firebase.auth().currentUser.uid)
-                notyf.success('Welcome back!');
-            }).catch(error => {
-                notyf.error('ohno: ' + error)
-            })
-            
-        })
-        .catch(error => {
-            notyf.error('ohno: ' + error)
-        })
-})
 
 /*
 * NAV
