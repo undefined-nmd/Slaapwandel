@@ -1,8 +1,6 @@
 import grovepi
 import time
 from threading import Thread
-from Vibrationsensor import Vibrationsensor
-from Motionsensor import Motionsensor
 
 # Connect the Grove PIR Motion Sensor to digital port D8
 # SIG,NC,VCC,GND

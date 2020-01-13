@@ -19,13 +19,12 @@ db = firestore.client()
 def main():
     while True:
         #retrieve data
-        # Led() 
 
         Trigger(db)
 
         # The alarm class, basically it checks in the database if the alarm is true or false,
         # based on that it either turns on or off the leds/buzzing
-        # Alarm(db)
+        Alarm(db)
 
         # makes it so it runs every second
         time.sleep(1) 
