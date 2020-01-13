@@ -34,6 +34,7 @@ const signoutBtn = document.querySelector('#signoutBtn');
 
 let temperatureChart
 
+let activesleeper = 'Indy';
 
 firebase.auth().onAuthStateChanged(user => {
     if (user) {
@@ -689,7 +690,7 @@ const getDashboard = (id) => {
         getDashboardSensors(id)
         settings(querySnapshot.data())
         
-        
+        activesleeper = id
     })
 }
 
@@ -890,7 +891,7 @@ let hartslagChart;
 const getDataChart = () => {
 
     db.collection('Users').doc(localStorage.getItem('userId')).collection('People')
-    .doc('Indy').collection('Sensors').doc('hartSensor').collection('refreshes').orderBy("timestamp", "desc").limit(1)
+    .doc(activesleeper).collection('Sensors').doc('hartSensor').collection('refreshes').orderBy("timestamp", "desc").limit(1)
     .limit(1).get().then(function(data){
         console.log(data.docs[0].data().rate)
         // get data from db and give it to hartslag
