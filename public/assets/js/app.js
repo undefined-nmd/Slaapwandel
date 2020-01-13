@@ -814,12 +814,15 @@ settingsProfileBtn.addEventListener('click', (e) => {
     const name = document.querySelector('.naamSetting').value
     const newgender = document.querySelector('.geslachtSetting').value
     const leeftijd =  document.querySelector('.leeftijdSetting').value
+    let hartslagmax =  220 - leeftijd;
+
 
 
    db.collection('Users').doc(localStorage.getItem('userId')).collection('People').doc(name).update({
         name: name,
         gender: newgender,
         leeftijd: leeftijd,
+        hartslagmax: hartslagmax
     })
     .catch(function(error) {
         notyf.error("Error adding data: ", error);
@@ -846,7 +849,7 @@ createBtn.addEventListener('click', (e) => {
     const newgender = document.querySelector('#newgender').value
     const newhartslag = document.querySelector('#newhartslag').value
     const leeftijd = document.querySelector('#leeftijd').value
-    let hartslagmax =  220 - leeftijd
+    let hartslagmax =  220 - leeftijd;
     const userId = firebase.auth().currentUser.uid
     
     db.collection('Users').doc(userId).collection('People').doc(newname).set({

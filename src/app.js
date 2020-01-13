@@ -4,6 +4,7 @@ import logger from 'morgan';
 import bodyParser from 'body-parser';
 import routes from './routes';
 import ngrok from 'ngrok';
+import cors from 'cors'
 
 // twilio details
 /*
@@ -13,6 +14,8 @@ const client = require('twilio')(accountSid, authToken);
 */
 const app = express();
 
+app.use(cors());
+
 (async function() {
   const url = await ngrok.connect(8080);
   const apiUrl = ngrok.getUrl();
@@ -21,7 +24,11 @@ const app = express();
   data = JSON.parse(data);
   console.log("saved " + data.tunnels[0].public_url);
 
+
 })();
+app.get('/ngrok', function (req, res, next) {
+  res.json({msg: 'This is CORS-enabled for a Single Route'})
+});
 app.disable('x-powered-by');
 
 // View engine setup
