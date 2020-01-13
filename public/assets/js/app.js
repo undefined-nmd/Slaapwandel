@@ -210,9 +210,9 @@ Highcharts.chart('container', {
         marginRight: 10,
         events: {
             load: function () {
-
                 // set up the updating of the chart each second
                 var series = this.series[0];
+                console.log(series)
                 setInterval(function () {
                     var x = (new Date()).getTime(), // current time
                         y = Math.random();
@@ -276,6 +276,7 @@ Highcharts.chart('container', {
         name: 'Random data',
         data: (function () {
             // generate an array of random data
+            /*
             var data = [],
                 time = (new Date()).getTime(),
                 i;
@@ -286,7 +287,32 @@ Highcharts.chart('container', {
                     y: Math.random()
                 });
             }
-            return data;
+            */
+
+           // generate an array and watch changes in heartrate
+           var data = [],
+                time = (new Date()).getTime()
+                db.collection('Users').doc(localStorage.getItem('userId')).collection('People')
+                .doc('Indy').collection('Sensors').doc('hartSensor').collection('refreshes').orderBy("timestamp", "desc")
+                .onSnapshot(snapshot => {
+                    //console.log(snapshot)
+                    let changes = snapshot.docChanges();
+                    changes.forEach(snap => {
+                        //console.log(snap)
+                        if(snap.type == 'added'){
+                            data.push({
+                                x: time + snap.newIndex, 
+                                y: snap.doc.data().rate
+                            })
+                            console.log('added')
+                        }
+                    })
+                    
+                    //showHeartRate(snapshot.docs[0].data().rate)
+                    //console.log(changes.data())
+
+                })
+        return data;
         }())
     }]
 });
@@ -316,13 +342,14 @@ const initChart = () => {
     })
 }
 */
+
 firebase.auth().onAuthStateChanged(user => {
     if (user) {
         if (!overlay.classList.contains('-hidden')) {
             overlay.classList.add('-hidden')
             notyf.success('Welcome back!');
         }
-        initApp()
+        //initApp()
     } else {
         overlay.classList.remove('-hidden')
     }
@@ -483,6 +510,7 @@ document.addEventListener('click',function(e){
         console.log(querySnapshot.data())
     });
  } 
+
 //function to show all data in the dashboard
 const showData = () => {
     console.log('showdata')
@@ -501,7 +529,7 @@ const showData = () => {
     showHeartRate();
 
     //get users
-    getPeople();
+    //getPeople();
 }
 
 // function to get the current time
@@ -606,7 +634,7 @@ const makeChart = (data) => {
 ** USER DASHBOARD
 **
 */
-
+/*
 const getPeople = () => {
     //const userId = firebase.auth().currentUser.uid
     // people names and make buttons for dashboard
@@ -632,6 +660,7 @@ const getPeople = () => {
         });
     });
 }
+*/
 
 document.addEventListener('click',function(e){
     if(e.target && e.target.className== 'dashboardbtn'){
@@ -675,7 +704,6 @@ const getDashboardSensors = (id) => {
                 const humidityValue = document.getElementById('humidityValue');
                 humidityValue.innerHTML = 'no value'
             }
-            
             //keypad
             console.log(querySnapshot.docs[3].data())
             //soundSensor
@@ -701,26 +729,52 @@ const getDashboardSensors = (id) => {
             //vibratieSensor
             console.log(querySnapshot.docs[6].data())
             //makeDashboard(querySnapshot.data()) 
-            db.collection('Users').doc(localStorage.getItem('userId')).collection('People')
-            .doc(id).collection('Sensors').doc('hartSensor').collection('refreshes').orderBy("timestamp", "desc").limit(1)
-            .get().then(function(doc){
-                console.log('hartbeat')
-                console.log(doc.docs[0].data().rate)
-                showHeartRate(doc.docs[0].data().rate)
-            })
+
+            getHeartRatePeople(id)
         })
 }
 
-db.collection('Users').doc(localStorage.getItem('userId')).collection('People')
-            .doc('Indy').collection('Sensors').doc('hartSensor').collection('refreshes').orderBy("timestamp", "desc").limit(1)
-            .onSnapshot(snapshot => {
-                console.log(snapshot.docs[0].data().rate)
-                let changes = snapshot.docChanges();
-                showHeartRate(snapshot.docs[0].data().rate)
-                //console.log(changes.data())
-                console.log(changes)
-                console.log('refreshes')
-            })
+// watch changes in heartrate
+    const getHeartRatePeople = (id) =>{
+        db.collection('Users').doc(localStorage.getItem('userId')).collection('People')
+        .doc(id).collection('Sensors').doc('hartSensor').collection('refreshes').orderBy("timestamp", "desc").limit(1)
+        .onSnapshot(snapshot => {
+            console.log(snapshot.docs[0].data().rate)
+            let changes = snapshot.docChanges();
+            showHeartRate(snapshot.docs[0].data().rate)
+            //console.log(changes.data())
+            console.log(changes)
+            console.log('refreshes')
+        })
+    }
+    
+const getPeople = ()=> {
+    // watch changes in people
+    db.collection('Users').doc(localStorage.getItem('userId')).collection('People').onSnapshot(snapshot =>{
+        console.log('people')
+        console.log(snapshot)
+        let changes = snapshot.docChanges();
+        changes.forEach(change => {
+            console.log(change.doc.data())
+            if(change.type == 'added'){
+                console.log(change.doc.data())
+                var button = document.createElement("button");
+                button.setAttribute("id", change.doc.data().name );
+                button.setAttribute("class", 'dashboardbtn' );
+                var name = document.createTextNode(change.doc.data().name); 
+                // add the text node to the newly created div
+                button.appendChild(name);  
+                usersBtn.appendChild(button);
+
+                getDashboard(change.doc.data().name)
+                        }
+                    })
+
+                })
+            }
+
+            getPeople()
+
 /*
 * Make personal dashboard with people data
 *
@@ -753,13 +807,16 @@ createBtn.addEventListener('click', (e) => {
     const newname = document.querySelector('#newname').value
     const newgender = document.querySelector('#newgender').value
     const newhartslag = document.querySelector('#newhartslag').value
-
+    const leeftijd = document.querySelector('#leeftijd').value
+    let hartslagmax =  220 - leeftijd
     const userId = firebase.auth().currentUser.uid
     
     db.collection('Users').doc(userId).collection('People').doc(newname).set({
         name: newname,
         gender: newgender,
         hartslag: newhartslag,
+        leeftijd: leeftijd,
+        hartslagmax: hartslagmax
     })
     .then(function(docRef) {
         //console.log("Document written with ID: ", docRef.id);
@@ -773,6 +830,7 @@ createBtn.addEventListener('click', (e) => {
     })
     .catch(function(error) {
         console.error("Error adding document: ", error);
+        notyf.error('ohno: ' + error)
     });
     
 })
