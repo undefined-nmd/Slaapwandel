@@ -251,7 +251,7 @@ sensorRef.get().then(function (querySnapshot) {
 }).catch(err => {
     console.log('Error getting documents', err);
 });
-
+/*
 Highcharts.chart('container', {
     chart: {
         type: 'spline',
@@ -336,7 +336,7 @@ Highcharts.chart('container', {
                     y: Math.random()
                 });
             }
-            
+        */    
 /*
            // generate an array and watch changes in heartrate
            var data = [],
@@ -361,11 +361,11 @@ Highcharts.chart('container', {
                     //console.log(changes.data())
 
                 })
-                */
+           
         return data;
         }())
     }]
-});
+});     */
 /*
 const initChart = () => {
     return new Promise((resolve, reject) => {
@@ -919,6 +919,19 @@ var trace1 = {
 },2000)
 
   var data = [trace1];
+  var layout = {
+    font: {size: 18},
+
+    margin: {
+      l: 50,
+      r: 50,
+      b: 100,
+      t: 100,
+      pad: 4
+    },
+    paper_bgcolor: '#7f7f7f',
+    plot_bgcolor: '#c7c7c7'
+  };
 // make chart
 
-Plotly.newPlot('chart', data);
+Plotly.newPlot('chart', data, layout, {responsive: true});
