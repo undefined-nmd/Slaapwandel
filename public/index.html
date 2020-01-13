@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+ <html lang="en">
+
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+     <title>Slaapwandel</title>
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
+     <link rel="stylesheet" href="./assets/css/app.css">
+     <link rel="stylesheet" href="./assets/css/notyf.min.css">
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+     <script src="https://kit.fontawesome.com/bd8617b409.js" crossorigin="anonymous"></script>
+ </head>
+
+ <body>
+     <section class="overlay">
+         <div class="overlay__form">
+             <img class="loginLogo" src="./assets/img/slaapwandelWit.png">
+             <h3 class="loginTitle">AANMELDEN</h3>
+             <p class="loginSubtitle">Slaapwandelen, word wakker vooraleer je wakker wordt.</p>
+
+
+             <form class="loginForm" method="post">
+
+
+                 <label class="login-form-group" for="email">Email
+                     <input class="login-form-control" type="email" name="email" id="email" autofocus>
+                 </label>
+
+                 <label class="login-form-group" for="password">Password
+                     <input class="login-form-control" type="password" name="password" id="password">
+                 </label>
+
+                 <a id="loginBtn" href="#" class="loginButton">Log in</a>
+                 <a id="signupBtn" class="loginButton" href="/signup">Make account</a>
+             </form>
+         </div>
+         <!-- <div class="overlay__form">
+             <h2>Connect User</h2>
+             <form class="form" method="post">
+
+                 <div class="form__group">
+
+                     <label for="email">Email</label>
+                     <input type="email" name="email" id="email" autofocus>
+                 </div>
+
+                 <div class="form__group">
+                     <label for="password">Password</label>
+                     <input type="password" name="password" id="password">
+                 </div>
+
+                 <button id="loginBtn" class="btn -primary">Log in</button>
+             </form>
+         </div>-->
+     </section>
+     <main class="container">
+         <section class="navContainer">
+             <div class="nav">
+                 <ul>
+                     <li id="mainBtn"><i class="fas fa-tachometer-alt"></i><span>dashboard</span></li>
+                     <li id="cameraBtn"><i class="fas fa-video"></i> <span>camera</span></li>
+                     <li id="chartBtn"><i class="fas fa-chart-bar"></i> <span>charts</span></li>
+                     <li id="settingsBtn"><i class="fas fa-cog"></i> <span>settings</span></li>
+                     <li id="signoutBtn"><i class="fas fa-sign-out-alt"></i><span>signout</span></li>
+                 </ul>
+             </div>
+         </section>
+
+         <section id="mainOverlay" class="informationContainer">
+             <header class="informationHeader">
+                 <div class="usersBtn">
+
+                 </div>
+                 <div class="crudBtn">
+                     <button id="newDashboardBtn"><i class="fas fa-plus-circle"></i></button>
+                 </div>
+             </header>
+             <section class="cameraSection">
+                 <div class="cameraContainer">
+                    <iframe src="http://192.168.0.252:8000/stream.mjpg" width='100%' height='100%' frameborde='0'></iframe>
+
+                 </div>
+                 <div class="cameraOverlayContainer left">
+                     <h3 class="humidity"><i class="fas fa-bell"></i></h3>
+                     <h3 class="humidity"><i class="fas fa-water"></i></h3>
+                     <!--<h3 class="humidity"><i class="fas fa-bell-slash"></i><span id="humidityValue">OFF</h3>-->
+                     <h3 class="humidity"><i class="fas fa-lightbulb"></i></h3>
+
+                 </div>
+                 <div class="cameraOverlayContainer right">
+                    <h3 class="humidity"><span id="peoplename"></span><i class="fas fa-user"></i></h3>
+                     <h3 class="humidity"><span id="date"></span><i class="fas fa-calendar-alt"></i></h3>
+                     <h3 class="humidity"><span id="time"></span> PM <i class="fas fa-clock"></i></h3>
+                     <h3 class="humidity"><span id="humidityValue"></span> % <i class="fas fa-tint"></i> </h3>
+                     <h3 class="humidity"><span id="temperature"></span> °C <i class="fas fa-thermometer-half"></i>
+                        <h3 class="humidity"><span id="sound"></span> db <i class="fas fa-volume-up"></i>
+                     </h3>
+                     <main class="tempContainer">
+                         <section class="temperature -outer" id="tempOuterRing">
+                             <div class="temperature">
+                                 <h1 class="temperature__display" id="heartrate"> </h1>
+                                 <i class="fas fa-heartbeat"></i>
+                             </div>
+                         </section>
+                     </main>
+                 </div>
+             </section>
+         </section>
+
+         <!-- CAMERA-->
+         <section id="cameraOverlay" class="informationContainer">
+             <p>Camera</p>
+             <div class="cameraContainer">
+                <iframe src="http://192.168.0.252:8000/stream.mjpg" width='100%' height='100%' frameborde='0'></iframe>
+
+             </div>
+         </section>
+
+         <!--CHART              <div class="ct-chart ct-perfect-fourth"></div>
+-->
+         <section id="chartOverlay" class="informationContainer">
+            <figure class="highcharts-figure">
+                <div id="container"></div>
+                <p class="highcharts-description">
+                    Heart rate chart showing data updating every second, with old data being removed.
+                </p>
+            </figure>
+
+            <div id="chart" style="  height: 85vh; min-height: 300px; margin: 0 auto;"></div>
+         </section>
+
+          <!-- Settings-->
+          <section id="settingsOverlay" class="informationContainer">
+            <div class="wrapper">
+                <div class="left">
+                    <img class="avatar" src="./assets/img/slaapwandelWit.png" alt="">
+
+                </div>
+                <div class="right">
+                  <h2>Profile Settings from <span id="userSettings"></span></h2>
+                  <div class="form" >
+                    <form
+                          action="index.html"
+                          method="post">
+                      <div class="field">
+                        <label for="">Naam</label>
+                        <input class="naamSetting"
+                               type="text"
+                               name="naam"
+                               value="" />
+                      </div>
+                      <div class="field">
+                        <label for="">Geslacht</label>
+                        <input class="geslachtSetting"
+                               type="text"
+                               name="geslacht" />
+                      </div>
+                      <div class="field">
+                        <label for="">Leeftijd</label>
+                        <input class="leeftijdSetting"
+                               type="text"
+                               name="leeftijd" />
+                      </div>
+                    </form>
+                  </div>
+                  <div class="bottom">
+                    <a href="#"><button class="button_left" type="submit" name="button">Save Changes</button></a>
+                  </div>
+                </div>
+              </div>
+        </section>
+        
+         <!--NEW DASHBOARD-->
+         <section id="newDashboardOverlay" class="informationContainer">
+            <h1>Create new dashboard</h1>
+                <form class="newDashboardForm" method="post">
+                    <label class="login-form-group" for="newname">Naam
+                        <input class="login-form-control" type="text" name="newname" id="newname" autofocus>
+                    </label>
+                    <br>
+                    <label class="login-form-group" for="newhartslag">Hartslag  in  rust
+                        <input class="login-form-control" type="number" name="newhartslag" id="newhartslag" autofocus>
+                    </label>
+                    <br>
+                    <label class="login-form-group" for="leeftijd">Leeftijd (in jaar)
+                        <input class="login-form-control" type="number" name="leeftijd" id="leeftijd" autofocus>
+                    </label>
+                    <br>
+                    <label>Geslacht:</label>
+                    <br>
+                    <input type="radio" name="newgender" id="newgender" value="male" checked> Male<br>
+                    <input type="radio" name="newgender" id="newgender" value="female"> Female<br>
+                    <input type="radio" name="newgender" id="newgender" value="other"> Other
+                    <br>
+                    <button id="createBtn" class="loginButton">Create</button>
+                </form>
+        </section>
+        
+     </main>
+
+
+     <!-- Scripts -->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
+     <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-app.js"></script>
+     <script src="https://rawgit.com/nnnick/Chart.js/v1.0.2/Chart.min.js?fbclid=IwAR2trmD6kx1tSyomDshYOlOCQ9GZUxFLQfaqscfY_LlE_za1bNIg4yDGGwU"></script>
+     <!-- Add desired Firebase functions -->
+     <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-analytics.js"></script>
+     <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-auth.js"></script>
+     <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-firestore.js"></script>
+     <!-- Charts
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
+     <script src="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
+     <script src="./assets/js/Chart.js"></script>
+    -->
+
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+
+     <script src="https://code.highcharts.com/highcharts.js"></script>
+     <script src="https://code.highcharts.com/modules/exporting.js"></script>
+     <script src="https://code.highcharts.com/modules/export-data.js"></script>
+     <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+     <!-- Add own scripts -->
+     <script src="assets/js/firebase-details.js"></script>
+     <script src="assets/js/notyf.min.js"></script>
+
+     <script src="assets/js/app.js"></script>
+     <script src="assets/js/request.js"></script>
+
+ </body>
+
+ </html> 
