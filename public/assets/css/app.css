@@ -676,7 +676,7 @@ textarea.login-form-control {
   
   .wrapper .left {
     width: 260px;
-    background-color: #4198ad;
+    background-color: #363f42;
   }
   
   .wrapper .icon {
@@ -712,8 +712,14 @@ textarea.login-form-control {
   }
   
   .avatar {
-    margin-left: 5px;
+    margin-left: 20%;
     width: 150px;
+    margin-top: 20%;
+    width: 100%;
+    max-width: 150px;
+  }
+  .wrapper .form {
+      margin-top: 33%;
   }
   
   .wrapper h3 {
