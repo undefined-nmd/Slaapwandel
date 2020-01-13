@@ -691,6 +691,7 @@ const getDashboard = (id) => {
         settings(querySnapshot.data())
         
         activesleeper = id
+        notyf.success('geswitched naar ' + id)
     })
 }
 
