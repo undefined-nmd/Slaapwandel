@@ -886,6 +886,7 @@ createSettings();
 // chart
 let hartslagChart;
 
+
 const getDataChart = () => {
 
     db.collection('Users').doc(localStorage.getItem('userId')).collection('People')

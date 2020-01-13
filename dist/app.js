@@ -28,6 +28,10 @@ var _ngrok = require('ngrok');
 
 var _ngrok2 = _interopRequireDefault(_ngrok);
 
+var _cors = require('cors');
+
+var _cors2 = _interopRequireDefault(_cors);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // twilio details
@@ -38,6 +42,8 @@ const client = require('twilio')(accountSid, authToken);
 */
 const app = (0, _express2.default)();
 
+app.use((0, _cors2.default)());
+
 (async function () {
   const url = await _ngrok2.default.connect(8080);
   const apiUrl = _ngrok2.default.getUrl();
@@ -46,6 +52,9 @@ const app = (0, _express2.default)();
   data = JSON.parse(data);
   console.log("saved " + data.tunnels[0].public_url);
 })();
+app.get('/ngrok', function (req, res, next) {
+  res.json({ msg: 'This is CORS-enabled for a Single Route' });
+});
 app.disable('x-powered-by');
 
 // View engine setup
