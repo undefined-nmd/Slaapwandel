@@ -33,7 +33,7 @@
                      <input class="login-form-control" type="password" name="password" id="password">
                  </label>
 
-                 <a id="loginBtn" class="loginButton">Log in</a>
+                 <a id="loginBtn" href="#" class="loginButton">Log in</a>
                  <a id="signupBtn" class="loginButton" href="/signup">Make account</a>
              </form>
          </div>
@@ -80,7 +80,7 @@
              </header>
              <section class="cameraSection">
                  <div class="cameraContainer">
-                    <iframe src="http://210.113.134.150/mjpg/video.mjpg#.Xht59c4gzHY.link" width='100%' height='100%' frameborde='0'></iframe>
+                    <iframe src="https://210.113.134.150/mjpg/video.mjpg#.Xht59c4gzHY.link" width='100%' height='100%' frameborde='0'></iframe>
 
                  </div>
                  <div class="cameraOverlayContainer left">
@@ -113,7 +113,7 @@
          <!-- CAMERA-->
          <section id="cameraOverlay" class="informationContainer">
              <p>Camera...</p>
-             <iframe src="http://210.113.134.150/mjpg/video.mjpg#.Xht59c4gzHY.link" width='100%' height='80%' frameborde='0'></iframe>
+             <iframe src="https://210.113.134.150/mjpg/video.mjpg#.Xht59c4gzHY.link" width='100%' height='80%' frameborde='0'></iframe>
              <canvas id="myChart" height="450" width="600"></canvas>
          </section>
 
@@ -130,10 +130,43 @@
 
           <!-- Settings-->
           <section id="settingsOverlay" class="informationContainer">
-            <h3>Settings</h3>
-            <div class="settingsUsersBtn">
-
-            </div>
+            <div class="wrapper">
+                <div class="left">
+                
+                </div>
+                <div class="right">
+                  <h2>Profile Settings from <span id="userSettings"></span></h2>
+                  <img class="avatar" src="http://www.pngall.com/wp-content/uploads/2/Shrek-PNG-Transparent-HD-Photo.png" alt="">
+                  <div class="form" >
+                    <form
+                          action="index.html"
+                          method="post">
+                      <div class="field">
+                        <label for="">Naam</label>
+                        <input class="naamSetting"
+                               type="text"
+                               name="naam"
+                               value="" />
+                      </div>
+                      <div class="field">
+                        <label for="">Geslacht</label>
+                        <input class="geslachtSetting"
+                               type="text"
+                               name="geslacht" />
+                      </div>
+                      <div class="field">
+                        <label for="">Leeftijd</label>
+                        <input class="leeftijdSetting"
+                               type="text"
+                               name="leeftijd" />
+                      </div>
+                    </form>
+                  </div>
+                  <div class="bottom">
+                    <a href="#"><button class="button_left" type="submit" name="button">Save Changes</button></a>
+                  </div>
+                </div>
+              </div>
         </section>
         
          <!--NEW DASHBOARD-->
@@ -147,6 +180,11 @@
                     <label class="login-form-group" for="newhartslag">Hartslag  in  rust
                         <input class="login-form-control" type="number" name="newhartslag" id="newhartslag" autofocus>
                     </label>
+                    <br>
+                    <label class="login-form-group" for="leeftijd">Leeftijd (in jaar)
+                        <input class="login-form-control" type="number" name="leeftijd" id="leeftijd" autofocus>
+                    </label>
+                    <br>
                     <label>Geslacht:</label>
                     <br>
                     <input type="radio" name="newgender" id="newgender" value="male" checked> Male<br>
